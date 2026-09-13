@@ -1,0 +1,6 @@
+Year,March port below baseline,March SAR above baseline,May-June port above baseline,May-June SAR above baseline,May-June NO₂ above baseline,May-June NO₂ above leave-year-out history,Matches to 2026
+2022,Yes,Yes,No,No,No,Yes,3/6
+2023,Yes,Yes,No,Yes,No,No,3/6
+2024,Yes,Yes,Yes,Yes,Yes,No,5/6
+2025,No,No,Yes,Yes,No,Yes,3/6
+2026,Yes,Yes,Yes,Yes,Yes,Yes,6/6

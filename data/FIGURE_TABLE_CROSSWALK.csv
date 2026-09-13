@@ -1,0 +1,22 @@
+display_item,source_data,reproduction_code,reproduction_mode
+Five-year port–SAR statistics,"files/statistical_inputs/khor_fakkan_port_daily.csv; files/statistical_inputs/khor_fakkan_sar_eligible_dates.csv",src/statistical_analysis.py,point estimates and stratified bootstrap recomputation
+May–June NO2 statistics,"files/statistical_inputs/no2_daily_aggregates.csv; files/statistical_inputs/no2_may_june_summary.csv",src/statistical_analysis.py,absolute-difference and UTC-week cluster bootstrap recomputation
+Figure 1,files/main_figures/Figure_1_source_data.csv,src/figure_1.py,source-data redraw
+Figure 2,files/main_figures/Figure_2_source_data.csv,src/figure_2.py,source-data redraw
+Supplementary Figure 1,files/supplementary_figures/Supplementary_Figure_1_source_data.csv,src/supplementary_figures.py,source-data redraw
+Supplementary Figure 2,files/supplementary_figures/Supplementary_Figure_2_source_data.csv,src/supplementary_figures.py,withheld before acceptance; public provenance and geometry only
+Supplementary Figure 3,files/supplementary_figures/Supplementary_Figure_3_source_data.csv,src/supplementary_figures.py,source-data redraw
+Supplementary Figure 4,files/supplementary_figures/Supplementary_Figure_4_source_data.csv,src/supplementary_figures.py,source-data redraw
+Supplementary Figure 5,files/supplementary_figures/Supplementary_Figure_5_source_data.csv,src/supplementary_figures.py,source-data redraw
+Supplementary Figure 6,files/supplementary_figures/Supplementary_Figure_6_source_data.csv,src/supplementary_figures.py,source-data redraw
+Supplementary Figure 7,files/supplementary_figures/Supplementary_Figure_7_source_data.csv,src/supplementary_figures.py,source-data redraw
+Supplementary Table 1,files/supplementary_tables/Supplementary_Table_01.csv,reproduce_all.py,"schema, row-count and checksum validation"
+Supplementary Table 2,files/supplementary_tables/Supplementary_Table_02.csv,reproduce_all.py,"schema, row-count and checksum validation"
+Supplementary Table 3,files/supplementary_tables/Supplementary_Table_03.csv,reproduce_all.py,"schema, row-count and checksum validation"
+Supplementary Table 4,files/supplementary_tables/Supplementary_Table_04.csv,reproduce_all.py,"schema, row-count and checksum validation"
+Supplementary Table 5,files/supplementary_tables/Supplementary_Table_05.csv,reproduce_all.py,"schema, row-count and checksum validation"
+Supplementary Table 6,files/supplementary_tables/Supplementary_Table_06.csv,reproduce_all.py,"schema, row-count and checksum validation"
+Supplementary Table 7,files/supplementary_tables/Supplementary_Table_07.csv,reproduce_all.py,"schema, row-count and checksum validation"
+Supplementary Table 8,files/supplementary_tables/Supplementary_Table_08.csv,reproduce_all.py,"schema, row-count and checksum validation"
+Supplementary Table 9,files/supplementary_tables/Supplementary_Table_09.csv,reproduce_all.py,"schema, row-count and checksum validation"
+Supplementary Table 10,files/supplementary_tables/Supplementary_Table_10.csv,reproduce_all.py,"schema, row-count and checksum validation"

@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite this repository and the associated article when using these materials."
+title: "Khor Fakkan port calls diverged from adjacent-water activity"
+type: software
+license: MIT
+authors:
+  - family-names: Zhang
+    given-names: Zhenbei
+    affiliation: "State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University"
+repository-code: "https://github.com/zhenbeizhang/hormuz-maritime-activity-gap"
+url: "https://github.com/zhenbeizhang/hormuz-maritime-activity-gap"
+keywords:
+  - Strait of Hormuz
+  - maritime disruption
+  - Sentinel-1
+  - port calls
+  - nitrogen dioxide
+  - sustainability

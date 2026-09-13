@@ -1,0 +1,67 @@
+{
+  "analysis": "five-year Khor Fakkan port-call and adjacent-water SAR comparison",
+  "years": [2022, 2023, 2024, 2025, 2026],
+  "event_year": 2026,
+  "scope": {
+    "portwatch_port_id": "port561",
+    "portwatch_port_name": "Khor Fakkan",
+    "sar_research_water_id": "khor_fakkan_fujairah_adjacent_secondary_water",
+    "sar_research_water_area_km2": 244.141701,
+    "sar_boundary_semantics": "fixed adjacent-offshore analytical water; not an official port, anchorage, route or jurisdiction",
+    "timezone": "UTC"
+  },
+  "windows": {
+    "baseline": {
+      "start": "01-01",
+      "end": "02-28",
+      "calendar_days_per_year": 59,
+      "february_29_excluded": true
+    },
+    "acute": {
+      "start": "03-01",
+      "end": "03-28",
+      "calendar_days_per_year": 28
+    }
+  },
+  "sar_matching": {
+    "platform": "Sentinel-1A",
+    "month_day_tolerance_days": 8,
+    "same_research_water": true,
+    "same_fixed_window": true,
+    "same_orbit_direction": true,
+    "same_relative_orbit": true,
+    "maximum_incidence_angle_difference_deg": 1.0,
+    "reference_scene_reuse": false,
+    "minimum_reference_years_per_target_date": 3,
+    "stage_statistic": "median of eligible dates",
+    "metric": "vessel-like labels per 100 km2"
+  },
+  "bootstrap": {
+    "replicates": 5000,
+    "seed": 20260817,
+    "port_resampling": "UTC days sampled with replacement within year and stage",
+    "sar_resampling": "eligible UTC dates sampled with replacement within year, stage and relative orbit",
+    "historical_extrema_reselected_each_replicate": true,
+    "interval_quantiles": [0.025, 0.5, 0.975]
+  },
+  "sources": {
+    "portwatch": {
+      "provider": "International Monetary Fund, PortWatch",
+      "url": "https://portwatch.imf.org/",
+      "content": "provider-recorded daily port calls"
+    },
+    "sentinel_1": {
+      "provider": "European Union Copernicus programme",
+      "collection_id": "COPERNICUS/S1_GRD",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD",
+      "content": "product identifiers and project-derived vessel-like activity densities"
+    }
+  },
+  "interpretation_boundary": {
+    "sar_metric_is_verified_vessel_census": false,
+    "portwatch_and_sar_are_same_measurement_domain": false,
+    "causal_effect_estimated": false,
+    "individual_vessel_locations_or_identities_released": false,
+    "joint_dominance_fraction_is_p_value": false
+  }
+}

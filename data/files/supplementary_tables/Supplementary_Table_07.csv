@@ -1,0 +1,3 @@
+Domain,Pre-event,Acute,Follow-up,Acute minus pre (95% CI),Interpretation
+Provider-recorded port calls,5.3059 day⁻¹,1.4464 day⁻¹,4.2927 day⁻¹,"−3.8595 day⁻¹ (−4.3950, −3.2828); rate ratio 0.2726 (0.2075, 0.3561)",Interval wholly below zero
+SAR-derived vessel-activity proxy,8.3349 labels per 100 km²,9.5256,10.7163,"+1.1907 (−3.5721, +4.7628)",Point direction positive; interval crosses zero

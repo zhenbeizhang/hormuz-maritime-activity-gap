@@ -1,0 +1,83 @@
+{
+  "analysis": "May–June population-weighted tropospheric NO2 column comparison",
+  "years": [2022, 2023, 2024, 2025, 2026],
+  "event_year": 2026,
+  "phase": {
+    "id": "late_phase",
+    "start": "05-01",
+    "end": "06-30",
+    "label": "May 1–June 30",
+    "timezone": "UTC"
+  },
+  "regions": [
+    {
+      "analysis_id": "khor_fakkan_subregion_sensitivity",
+      "buffer_km": 20,
+      "analysis_type": "primary pair-aligned domain",
+      "bootstrap_seed": 20260741
+    },
+    {
+      "analysis_id": "khor_fakkan_subregion_sensitivity",
+      "buffer_km": 10,
+      "analysis_type": "smaller-buffer sensitivity",
+      "bootstrap_seed": 20260841
+    },
+    {
+      "analysis_id": "khor_fakkan_subregion_sensitivity",
+      "buffer_km": 30,
+      "analysis_type": "larger-buffer sensitivity",
+      "bootstrap_seed": 20260941
+    },
+    {
+      "analysis_id": "fujairah_khor_fakkan_east_coast_cluster",
+      "buffer_km": 20,
+      "analysis_type": "east-coast cluster context",
+      "bootstrap_seed": 20261041
+    }
+  ],
+  "eligibility": {
+    "minimum_area_coverage_fraction": 0.60,
+    "minimum_population_coverage_fraction": 0.60,
+    "expected_value_required": true,
+    "meteorological_model_reliable_required": true,
+    "missing_value_imputation": false,
+    "same_rule_applied_to_all_years": true
+  },
+  "estimator": {
+    "event_statistic": "mean of eligible daily anomalies in 2026",
+    "historical_statistic": "equal-weight mean of the four within-year means for 2022–2025",
+    "reported_contrast": "2026 mean minus equal-year historical mean",
+    "unit": "mol m-2"
+  },
+  "bootstrap": {
+    "replicates": 5000,
+    "resampling_unit": "UTC week within year",
+    "historical_year_weighting": "equal",
+    "interval_quantiles": [0.025, 0.975]
+  },
+  "sources": {
+    "sentinel_5p": {
+      "provider": "European Union Copernicus programme",
+      "collection_id": "COPERNICUS/S5P/OFFL/L3_NO2",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_NO2"
+    },
+    "era5": {
+      "provider": "Copernicus Climate Change Service",
+      "collection_id": "ECMWF/ERA5_LAND/DAILY_AGGR",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_DAILY_AGGR"
+    },
+    "population": {
+      "provider": "European Commission Joint Research Centre",
+      "product": "GHS-POP",
+      "url": "https://human-settlement.emergency.copernicus.eu/ghs_pop2023.php"
+    }
+  },
+  "interpretation_boundary": {
+    "metric": "population-weighted tropospheric NO2 column anomaly proxy",
+    "surface_concentration": false,
+    "personal_exposure": false,
+    "health_effect": false,
+    "emission_source_attribution": false,
+    "causal_effect_estimated": false
+  }
+}
