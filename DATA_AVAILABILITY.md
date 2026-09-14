@@ -4,8 +4,8 @@ The aggregate source data supporting the main figures, supplementary figures
 and supplementary tables are available in this GitHub repository:
 https://github.com/zhenbeizhang/hormuz-maritime-activity-gap.
 
-An immutable study snapshot should be cited using the full Git commit URL that
-corresponds to the submitted manuscript.
+Version-specific reuse should cite the full Git commit URL used for the
+analysis.
 
 The repository includes figure-source CSV files, analysis-ready aggregate
 tables, a data dictionary, source documentation, manifests and SHA-256
@@ -19,10 +19,9 @@ rasters or third-party xView3 weights. Official access routes and source
 identifiers are documented in `docs/THIRD_PARTY_DATA.md`.
 
 The display asset for Supplementary Figure 2 is not stored in the public
-repository before acceptance because its optical and SAR pixel chips are not
-redistributed. The repository supplies its analytical geometry, product
-identifiers, dates and official access URLs, and the lightweight workflow
-records the panel as withheld rather than claiming to reconstruct it.
+repository because its optical and SAR pixel chips are not redistributed. The
+repository supplies its analytical geometry, product identifiers, dates and
+official access URLs, and records the panel as a documented exception.
 
 Port-call and passage indicators were obtained from IMF PortWatch. Shared tables
 identify the source and preserve the transformations used in the study. Reuse

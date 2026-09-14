@@ -44,7 +44,7 @@ def _withheld_figure_2() -> dict[str, Any]:
         "reason": (
             "The seven-row source CSV documents geometry and imagery lineage but intentionally "
             "omits the third-party optical and SAR pixel chips. No display-ready manuscript "
-            "figure or placeholder is stored in the public repository before acceptance."
+            "figure or placeholder is stored in the public repository."
         ),
     }
 
@@ -103,4 +103,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
     result = reproduce(args.figure, args.data_root, args.output_root) if args.figure else reproduce_all(args.data_root, args.output_root)
     print(json.dumps(result, indent=2, sort_keys=True))
-

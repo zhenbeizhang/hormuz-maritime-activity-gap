@@ -139,7 +139,7 @@ def _write_markdown_qa(output_root: Path, payload: dict[str, Any]) -> None:
             "",
             "## Reproduction boundary",
             "",
-            "This command recomputes the reported five-year port–SAR point estimates and 5,000-replicate bootstrap from shared daily/eligible-date aggregate inputs, then redraws the aggregate/source-data figures. It does not rerun upstream Sentinel-1 preprocessing, xView3 inference, PortWatch acquisition, TROPOMI/ERA5 processing, population weighting or atmospheric models. Supplementary Figure 2 is recorded as withheld before acceptance because its source table intentionally does not redistribute the underlying optical/SAR pixel chips.",
+            "This command recomputes the reported five-year port–SAR point estimates and 5,000-replicate bootstrap from shared daily/eligible-date aggregate inputs, then redraws the aggregate/source-data figures. It does not rerun upstream Sentinel-1 preprocessing, xView3 inference, PortWatch acquisition, TROPOMI/ERA5 processing, population weighting or atmospheric models. Supplementary Figure 2 is recorded as excluded from public rendering because its source table does not redistribute the underlying optical/SAR pixel chips.",
             "",
             "Vessel-like labels remain an activity proxy rather than verified vessel totals. NO2 values remain population-weighted tropospheric column anomalies rather than surface concentration, personal exposure or health effects. No causal effect is claimed.",
         ]
@@ -150,7 +150,7 @@ def _write_markdown_qa(output_root: Path, payload: dict[str, Any]) -> None:
     ilines = [
         "# Generated figure output inventory",
         "",
-        "Display-ready manuscript figures are not stored in the repository before acceptance.",
+        "Rendered manuscript figures are generated from the shared source tables and plotting code.",
         "",
     ]
     for row in inventory:

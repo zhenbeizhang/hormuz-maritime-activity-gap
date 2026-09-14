@@ -1,16 +1,13 @@
-# Khor Fakkan port calls diverged from adjacent-water activity
+# The Hormuz disruption reveals a maritime resilience accounting gap
 
-This repository contains the source data and plotting code associated with the
-study **“Khor Fakkan port calls diverged from adjacent-water activity.”** The
-study compares provider-recorded port calls with a
-Sentinel-1/xView3-derived vessel-activity proxy in fixed adjacent-offshore
-research waters and with population-weighted TROPOMI tropospheric NO₂ column
-anomalies.
-
-The repository supports a bounded measurement result. It does not identify
-individual vessel movements, establish port substitution, estimate causal
-effects, attribute atmospheric anomalies to ships, or convert tropospheric NO₂
-columns into surface concentration, personal exposure or health outcomes.
+This repository provides the source data and reproducible code associated with
+the study **“The Hormuz disruption reveals a maritime resilience accounting
+gap.”** The analysis combines provider-recorded port calls, a Sentinel-1/xView3
+vessel-activity proxy for predefined adjacent waters, and population-weighted
+TROPOMI tropospheric NO₂ column anomalies. These complementary observations
+show how activity and atmospheric conditions beyond port boundaries can follow
+different trajectories from port-based indicators during a maritime
+disruption.
 
 ## Repository contents
 
@@ -20,17 +17,16 @@ columns into surface concentration, personal exposure or health outcomes.
 - `src/`: statistical analysis, plotting, validation and output utilities.
 - `assets/`: project-authored analytical geometry and regional land context
   used by plotting and provenance records.
-- `tests/`: automated checks for inputs, outputs, paths and sensitive content.
+- `tests/`: automated checks for source-data integrity and reproducible outputs.
 - `docs/`: data-source, field and redistribution documentation.
 
 The exact statistical boundary is described in
 [`docs/STATISTICAL_REPRODUCIBILITY.md`](docs/STATISTICAL_REPRODUCIBILITY.md).
 
-Display-ready manuscript figures are intentionally not version-controlled
-before journal acceptance. They are generated locally from the shared source
-tables and plotting code. The optical/SAR chip panel in Supplementary Figure 2
-is recorded as withheld because its third-party pixel chips are not
-redistributed.
+Rendered manuscript figures are generated locally from the shared source tables
+and plotting code. The optical/SAR chip panel in Supplementary Figure 2 is
+documented through its source table and provenance records because the
+third-party pixel chips are not redistributed.
 
 ## Reproduce the figures and tables
 
@@ -67,10 +63,10 @@ population weights or repeat the upstream TROPOMI/ERA5 processing. The shared
 NO₂ daily input contains population-weighted aggregate values, coverage and
 eligibility fields, not raw pixels.
 
-Supplementary Figure 2 is not rendered by the public package before acceptance
-because its underlying optical and SAR pixel chips are not redistributed. Its
-source table documents geometry and imagery lineage, and the run manifest
-records the panel as withheld rather than silently substituting a placeholder.
+Supplementary Figure 2 is not rendered by the public package because its
+underlying optical and SAR pixel chips are not redistributed. Its source table
+documents geometry and imagery lineage, and the run manifest records this
+exception explicitly.
 
 ## Data sources and interpretation
 
@@ -88,9 +84,9 @@ retain different units, denominators and sampling frequencies.
 
 ## Citation
 
-Use the repository citation in `CITATION.cff` and cite the associated article
-when it becomes available. Cite the full Git commit URL used for an analysis,
-because the `main` branch may continue to change.
+Use the repository citation in `CITATION.cff`. For version-specific reuse, cite
+the full Git commit URL used for the analysis because the `main` branch may
+continue to change.
 
 ## Licence and reuse
 

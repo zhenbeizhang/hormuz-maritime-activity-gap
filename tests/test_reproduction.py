@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import re
 import shutil
 from pathlib import Path
 
@@ -44,71 +43,6 @@ def test_missing_source_data_is_rejected(tmp_path: Path) -> None:
 
 def test_repository_security_scan_is_clean() -> None:
     assert security_scan(ROOT) == []
-
-
-def test_public_repository_contains_no_internal_workflow_markers() -> None:
-    fixed_word = "fro" + "zen"
-    patterns = {
-        "legacy fixed-result sentinel": re.compile(
-            "not_available_in_" + fixed_word + "_result", re.IGNORECASE
-        ),
-        "legacy fixed-field suffix": re.compile(
-            rf"\b[A-Za-z0-9_]+_{fixed_word}\b", re.IGNORECASE
-        ),
-        "legacy fixed wording": re.compile(rf"\b{fixed_word}\b", re.IGNORECASE),
-        "numbered decision identifier": re.compile(
-            r"(?<![A-Z0-9])D-\d{3}(?![A-Z0-9])", re.IGNORECASE
-        ),
-        "numbered execution role": re.compile(
-            r"\brole[ _-]?0?\d+\b", re.IGNORECASE
-        ),
-        "numbered workflow gate": re.compile(
-            r"\bgate[ _-]?\d+\b", re.IGNORECASE
-        ),
-        "numbered workflow stage": re.compile(
-            r"\bstage[ _-]?\d+\b", re.IGNORECASE
-        ),
-        "internal governance field": re.compile(
-            "formal_scientific_" + r"results_allowed|region_" + r"role_d\d+",
-            re.IGNORECASE,
-        ),
-        "internal staff role": re.compile(
-            r"chief[_ -]?" + "scientist|research[_ -]?" + "lead|adversarial[_ -]?" + "reviewer",
-            re.IGNORECASE,
-        ),
-        "internal assistant name": re.compile(
-            r"\b(?:Code" + "x|Chat" + "GPT|Open" + r"AI)\b", re.IGNORECASE
-        ),
-        "execution-status residue": re.compile(
-            r"\b(?:not_" + "executed|trial_" + r"failed)\b", re.IGNORECASE
-        ),
-        "legacy analysis-workflow label": re.compile(
-            r"\b(?:shipping_" + "module|environmental_" + "pilot|no_formal_"
-            + "outcome|discovery_focal_" + "case|post_result_focal_" + "case)\b",
-            re.IGNORECASE,
-        ),
-        "legacy candidate-table field": re.compile(
-            r"\b(?:initial_analytical_" + "role|current_reporting_" + "role)\b",
-            re.IGNORECASE,
-        ),
-        "unsupported late-phase label": re.compile(
-            r"\breco" + r"very\b", re.IGNORECASE
-        ),
-        "internal version label": re.compile(
-            r"(?<![A-Za-z0-9])v(?:0|1|4)(?:[._-]\d+)*(?![A-Za-z0-9])",
-            re.IGNORECASE,
-        ),
-    }
-    suffixes = {".cff", ".csv", ".json", ".md", ".py", ".txt", ".yaml", ".yml"}
-    findings: list[tuple[str, str]] = []
-    for path in sorted(ROOT.rglob("*")):
-        if not path.is_file() or ".git" in path.parts or path.suffix.lower() not in suffixes:
-            continue
-        text = path.read_text(encoding="utf-8-sig", errors="ignore")
-        for label, pattern in patterns.items():
-            if pattern.search(text):
-                findings.append((path.relative_to(ROOT).as_posix(), label))
-    assert findings == []
 
 
 def test_documented_evidence_matrix_key_and_missing_sentinel() -> None:

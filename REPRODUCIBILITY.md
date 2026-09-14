@@ -41,8 +41,8 @@ under `data/files/statistical_inputs/`.
 
 Statistics outside the two declared core recomputations remain available as
 shared source-table values for display verification rather than full upstream
-re-estimation. Supplementary Figure 2 is withheld from the public rendering
-workflow before acceptance because its pixel chips are not redistributed.
+re-estimation. Supplementary Figure 2 is excluded from the public rendering
+workflow because its pixel chips are not redistributed.
 
 ## Determinism
 
