@@ -1,26 +1,33 @@
-# The Hormuz disruption reveals a maritime resilience accounting gap
+# Spatial observations of the 2026 Hormuz disruption
 
-This repository provides the source data and reproducible code associated with
-the study **“The Hormuz disruption reveals a maritime resilience accounting
-gap.”** The analysis combines provider-recorded port calls, a Sentinel-1/xView3
-vessel-activity proxy for predefined adjacent waters, and population-weighted
-TROPOMI tropospheric NO₂ column anomalies. These complementary observations
-show how activity and atmospheric conditions beyond port boundaries can follow
-different trajectories from port-based indicators during a maritime
-disruption.
+This repository contains the source data and analysis code associated with the
+Article **“Spatial observations expose limits of monitoring the Hormuz
+disruption through port records.”** The study compares provider-recorded port
+calls with a Sentinel-1/xView3-derived vessel-activity proxy in fixed
+adjacent-water research geometries and with population-weighted TROPOMI
+tropospheric NO₂ column anomalies.
+
+The repository supports a bounded measurement result. It does not identify
+individual vessel movements, establish port substitution, estimate causal
+effects, attribute atmospheric anomalies to ships, or convert tropospheric NO₂
+columns into surface concentration, personal exposure or health outcomes.
 
 ## Repository contents
 
-- `data/`: source tables for two main figures, seven supplementary figures,
-  ten supplementary tables, five supplementary datasets and the aggregate
-  daily inputs needed for the reported port–SAR and May–June NO₂ statistics.
+- `article_data/`: publication-facing source tables for four main figures,
+  seven supplementary figures, ten supplementary tables and five
+  Supplementary Data files, with a manifest and checksums.
+- `data/`: compact inputs used by the lightweight statistical and plotting
+  workflow to independently recompute the core port–SAR and May–June NO₂
+  contrasts.
 - `src/`: statistical analysis, plotting, validation and output utilities.
 - `assets/`: project-authored analytical geometry and regional land context
   used by plotting and provenance records.
 - `tests/`: automated checks for source-data integrity and reproducible outputs.
 - `docs/`: data-source, field and redistribution documentation.
 
-The exact statistical boundary is described in
+The Article-facing file inventory is described in
+[`article_data/README.md`](article_data/README.md). The exact statistical boundary is described in
 [`docs/STATISTICAL_REPRODUCIBILITY.md`](docs/STATISTICAL_REPRODUCIBILITY.md).
 
 Rendered manuscript figures are generated locally from the shared source tables
@@ -38,9 +45,9 @@ conda activate hormuz-maritime-reproduction
 python reproduce_all.py --data-root data --output-root reproduced_outputs
 ```
 
-The command generates:
+The command generates computational views used to verify the Article:
 
-- two main figures and six of the seven supplementary figures in PDF,
+- two data-rich graphical composites and six supplementary figures in PDF,
   SVG and PNG;
 - the five-year port–SAR point estimates and 5,000-replicate stratified
   bootstrap;
@@ -53,6 +60,10 @@ The command generates:
 
 The output directory must be absent or empty. The workflow fails if a required
 file, checksum, table schema or declared source-data shape has changed.
+
+The final journal layouts are assembled from the verified outputs and the
+publication-facing tables under `article_data/`; they are not version-controlled
+as display-ready figures before acceptance.
 
 ## Reproducibility boundary
 

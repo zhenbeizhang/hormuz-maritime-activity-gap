@@ -1,0 +1,25 @@
+Candidate,Provider ID,Availability/comparability,Reporting role
+Strait of Hormuz,chokepoint6,Common-window series,Regional disruption context
+Bandar Shahid Rajaee,port106,"Available, non-comparable event window",Separate descriptive series
+Bandar Abbas,port107,Common-window series,Regional context
+Ras Laffan,port1090,Common-window series,Regional context
+Ras Tanura,port1091,Common-window series,Regional context
+Umm Qasr,port1341,Common-window series,Regional context
+Port Said,port192,Common-window series,Wider-route context
+Khalifa Port,port2025,Common-window series,Regional context
+Hamad Port,port2026,Common-window series,Regional context
+Jubail,port24,Common-window series,Regional context
+Dammam,port275,Common-window series,Regional context
+Djibouti,port294,Common-window series,Wider-route context
+Fujairah,port362,Common-window series,Original candidate
+Abu Dhabi,port5,Common-window series,Regional context
+Jeddah,port518,Common-window series,Wider-route context
+Khor Fakkan,port561,Common-window series,Post-result discovery case
+Mina Al Ahmadi,port743,Common-window series,Regional context
+Jebel Ali,port744,Common-window series,Original candidate/control
+Salalah,port746,Common-window series,Counterexample
+Duqm,port984,Common-window series,Delayed-increase context
+Port of Sohar,port988,Common-window series,High-confounding sensitivity
+Kuwait,unavailable,Provider series unavailable,Disclosed unavailable candidate
+Mesaieed,unavailable,Provider series unavailable,Disclosed unavailable candidate
+Suez,unavailable,Provider series unavailable,Disclosed unavailable candidate

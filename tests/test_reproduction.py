@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import shutil
 from pathlib import Path
 
@@ -43,6 +44,66 @@ def test_missing_source_data_is_rejected(tmp_path: Path) -> None:
 
 def test_repository_security_scan_is_clean() -> None:
     assert security_scan(ROOT) == []
+
+
+def test_public_metadata_have_no_private_or_assistant_markers() -> None:
+    public_metadata = [
+        "CITATION.cff",
+        "CODE_AVAILABILITY.md",
+        "DATA_AVAILABILITY.md",
+        "README.md",
+        "REPRODUCIBILITY.md",
+    ]
+    forbidden = re.compile(
+        r"OpenAI|Codex|ChatGPT|[A-Za-z]:\\|/Users/|AppData|"
+        r"formal_scientific_results_allowed|Role0?\d|\bD0\d{2}\b|"
+        r"\bV[014](?:[._-]\d+)*\b",
+        re.IGNORECASE,
+    )
+    findings = [
+        name
+        for name in public_metadata
+        if forbidden.search((ROOT / name).read_text(encoding="utf-8-sig"))
+    ]
+    assert findings == []
+
+
+def test_article_facing_data_are_complete_and_publication_clean() -> None:
+    article = ROOT / "article_data"
+    assert article.is_dir()
+    assert len(list((article / "main_figures").glob("Figure_*_source_data.csv"))) == 4
+    assert len(list((article / "supplementary_figures").glob("Supplementary_Figure_*_source_data.csv"))) == 7
+    assert len(list((article / "supplementary_tables").glob("Supplementary_Table_*.csv"))) == 10
+    assert len(list((article / "supplementary_data").glob("Supplementary_Data_*.csv"))) == 5
+
+    forbidden = re.compile(
+        r"OpenAI|Codex|Role0?\d|\bD0\d{2}\b|V[014](?:[._-]\d+)*|"
+        r"[A-Za-z]:\\|/Users/|AppData|formal_scientific_results_allowed|"
+        r"initial_analytical_role|current_reporting_role|shipping_module|"
+        r"environmental_pilot|no_formal_outcome|trial_failed|not_executed|"
+        r"not_available_in_frozen_result|post_result_focal_case|discovery_focal_case",
+        re.IGNORECASE,
+    )
+    findings = []
+    for path in sorted(article.rglob("*")):
+        if not path.is_file() or path.suffix.lower() not in {".csv", ".md"}:
+            continue
+        if forbidden.search(path.read_text(encoding="utf-8-sig", errors="ignore")):
+            findings.append(path.relative_to(ROOT).as_posix())
+    assert findings == []
+
+    evidence = pd.read_csv(
+        article / "supplementary_data/Supplementary_Data_1_full_evidence_matrix.csv"
+    )
+    target = evidence.loc[
+        evidence["evidence_record_id"].eq("env_khor_fakkan_subregion")
+        & evidence["analysis_window"].eq("recovery_may01_to_jun30")
+    ]
+    assert len(target) == 1
+    row = target.iloc[0]
+    assert float(row["absolute_change"]) == pytest.approx(2.13879147615e-05, abs=1e-16)
+    assert float(row["ci95_lower_in_reported_scale"]) == pytest.approx(1.04247261742e-05, abs=1e-16)
+    assert float(row["ci95_upper_in_reported_scale"]) == pytest.approx(3.3562490962e-05, abs=1e-16)
 
 
 def test_documented_evidence_matrix_key_and_missing_sentinel() -> None:

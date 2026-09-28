@@ -7,13 +7,14 @@ https://github.com/zhenbeizhang/hormuz-maritime-activity-gap.
 Version-specific reuse should cite the full Git commit URL used for the
 analysis.
 
-The repository includes figure-source CSV files, analysis-ready aggregate
-tables, a data dictionary, source documentation, manifests and SHA-256
-checksums. It also includes the fixed daily PortWatch values, eligible-date SAR
-activity proxies and population-weighted daily NO₂ aggregates used to
-recompute the reported core contrasts and bootstrap intervals. These are
-transformed analytical inputs, not raw provider files. Because of volume and
-source-specific redistribution conditions, the repository does not duplicate
+The `article_data/` directory contains the publication-facing source tables for
+all four main figures, seven supplementary figures, ten supplementary tables
+and five Supplementary Data files, with a manifest and SHA-256 checksums. The
+`data/` directory additionally contains the compact fixed daily PortWatch
+values, eligible-date SAR activity proxies and population-weighted daily NO₂
+aggregates used to independently recompute the core contrasts and bootstrap
+intervals. These are transformed analytical inputs, not raw provider files.
+Because of volume and source-specific redistribution conditions, the repository does not duplicate
 raw Sentinel-1 or Sentinel-2 imagery, TROPOMI pixel stacks, ERA5 grids, GHS-POP
 rasters or third-party xView3 weights. Official access routes and source
 identifiers are documented in `docs/THIRD_PARTY_DATA.md`.

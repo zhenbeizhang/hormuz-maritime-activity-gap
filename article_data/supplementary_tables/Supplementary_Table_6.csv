@@ -1,0 +1,4 @@
+Fixed order,Event,Metadata disposition,Scientific direction computed?
+1,"Red Sea-Bab el-Mandeb, 2023-2024",Excluded because prior outcome exposure/access-history independence was unresolved,No
+2,"Suez Ever Given, 2021",Strict water-and-250-m-shoreline construction produced an empty study water before Sentinel-1 query,No
+3,"Baltimore port closure, 2024",First metadata-eligible event; 182/182 dates and 29 locked Sentinel-1A scenes,"Yes, once"

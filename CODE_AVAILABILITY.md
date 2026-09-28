@@ -1,8 +1,8 @@
 # Code availability
 
-Project-authored code supporting reproduction of two main figures, six of the
-seven supplementary figures and validation of ten supplementary tables is
-available in this GitHub repository:
+Project-authored code supporting independent recomputation of the core
+port–SAR and nitrogen-dioxide contrasts, graphical verification and validation
+of the ten supplementary tables is available in this GitHub repository:
 https://github.com/zhenbeizhang/hormuz-maritime-activity-gap.
 
 Supplementary Figure 2 contains third-party optical and SAR image chips and is
@@ -11,10 +11,13 @@ lightweight public workflow. Version-specific reuse should cite the full Git
 commit URL used for the analysis.
 
 The repository includes a declared environment, automated tests, manifests and
-a single reproduction command operating on the accompanying source-data tables.
-That command recomputes the five-year port–SAR point estimates and bootstrap,
-and the May–June population-weighted NO₂ absolute differences and UTC-week
-cluster bootstrap. It does not rerun satellite acquisition, xView3 inference,
-TROPOMI/ERA5 preprocessing or population weighting. Third-party xView3 source
-code and weights are not redistributed. Project-authored software code is
-licensed under the scoped MIT License in `LICENSE`.
+a single reproduction command operating on the accompanying source-data
+tables. That command recomputes the five-year port–SAR point estimates and
+bootstrap, and the May–June population-weighted NO₂ absolute differences and
+UTC-week cluster bootstrap. Publication-facing source tables for all four main
+figures, seven supplementary figures, ten supplementary tables and five
+Supplementary Data files are under `article_data/`. The workflow does not
+rerun satellite acquisition, xView3 inference, TROPOMI/ERA5 preprocessing or
+population weighting. Third-party xView3 source code and weights are not
+redistributed. Project-authored software code is licensed under the scoped MIT
+License in `LICENSE`.

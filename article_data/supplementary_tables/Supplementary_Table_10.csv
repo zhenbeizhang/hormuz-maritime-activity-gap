@@ -1,0 +1,10 @@
+Check,Result,Interpretation boundary
+"2026 minus 2024, port calls",−43.9 percentage points,Point contrast; port dimension only
+"2026 minus 2024, SAR proxy",+23.2 percentage points,Point contrast; SAR dimension only
+"2026 minus reselected historical minimum, port calls",95% interval -57.3 to +26.4 pp,Crosses zero
+"2026 minus reselected historical maximum, SAR proxy",95% interval +9.0 to +35.1 pp,Entirely positive
+Bootstrap joint-dominance proportion,0.8288,Resampling proportion; not a P value
+Historical-date tolerances,"±7, ±8 and ±12 days",Point dominance and basic directions retained
+Leave-one diagnostics,Date and relative orbit,Point dominance and basic directions retained
+2022–2026 March SAR sampling,"Baseline/March eligible dates: 14/6, 13/6, 13/6, 13/6 and 14/5; three March relative orbits in each year; orbit 57 contributed one 2026 date",Point estimates and intervals condition on the observed acquisition sets
+Overall interpretation,"Direction repeats, but the 2026 magnitude is partly distinct","Descriptive, post-result focal case"

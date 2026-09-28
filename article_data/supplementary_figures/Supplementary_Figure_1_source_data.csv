@@ -1,0 +1,41 @@
+sensitivity_dimension,setting_label,window_label,reference_period,difference_from_jan_feb_2026_density_per_100_km2,bootstrap_ci95_lower,bootstrap_ci95_upper,bootstrap_ci95_excludes_zero,current_2026_scene_count,direction,interpretation_limit
+model_fold,Fold 0,1–14 Mar,1 Jan–28 Feb 2026,5.32862446888,2.13608554322,8.26270957369,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 0,15–28 Mar,1 Jan–28 Feb 2026,2.04947094957,3.2624399089,9.58065013872,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 0,May,1 Jan–28 Feb 2026,7.37809541845,0.223559680253,8.77399582836,True,21.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 0,June,1 Jan–28 Feb 2026,2.66431223444,1.94077847851,9.25008515118,True,18.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 1,1–14 Mar,1 Jan–28 Feb 2026,9.42756636802,7.80612842175,10.1289151856,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 1,15–28 Mar,1 Jan–28 Feb 2026,11.4770373176,9.12838952304,11.0512718425,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 1,May,1 Jan–28 Feb 2026,8.19788379828,6.01333455603,8.21402651653,True,21.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 1,June,1 Jan–28 Feb 2026,10.4523018428,9.07414658985,11.9317290089,True,18.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 2,1–14 Mar,1 Jan–28 Feb 2026,9.42756636802,7.04556487885,9.48507178853,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 2,15–28 Mar,1 Jan–28 Feb 2026,9.83746055793,8.11529331723,10.3686405179,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 2,May,1 Jan–28 Feb 2026,7.78798960836,4.92547901352,8.02228631841,True,21.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 2,June,1 Jan–28 Feb 2026,10.6572489378,8.006376293,11.3682070518,True,18.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 3,1–14 Mar,1 Jan–28 Feb 2026,9.83746055793,6.73120289218,9.13316814732,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 3,15–28 Mar,1 Jan–28 Feb 2026,10.2473547478,8.4810875449,10.4463182395,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 3,May,1 Jan–28 Feb 2026,6.96820122853,5.2040472685,7.74454651239,True,21.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+model_fold,Fold 3,June,1 Jan–28 Feb 2026,10.0424076529,7.9430672329,10.7815377264,True,18.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+objectness_threshold,0.30,1–14 Mar,1 Jan–28 Feb 2026,9.42756636802,7.80612842175,10.1289151856,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+objectness_threshold,0.30,15–28 Mar,1 Jan–28 Feb 2026,11.4770373176,9.12838952304,11.0512718425,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+objectness_threshold,0.30,May,1 Jan–28 Feb 2026,8.19788379828,6.01333455603,8.21402651653,True,21.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+objectness_threshold,0.30,June,1 Jan–28 Feb 2026,10.4523018428,9.07414658985,11.9317290089,True,18.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+objectness_threshold,0.40,1–14 Mar,1 Jan–28 Feb 2026,6.96820122853,6.02138946453,8.28170045757,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+objectness_threshold,0.40,15–28 Mar,1 Jan–28 Feb 2026,9.83746055793,8.41507294493,10.2685698618,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+objectness_threshold,0.40,May,1 Jan–28 Feb 2026,7.37809541845,5.87054200975,8.15605677223,True,21.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+objectness_threshold,0.40,June,1 Jan–28 Feb 2026,9.83746055793,8.3187749826,11.0433800558,True,18.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+objectness_threshold,0.50,1–14 Mar,1 Jan–28 Feb 2026,3.68904770922,3.83543011362,6.63992783913,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+objectness_threshold,0.50,15–28 Mar,1 Jan–28 Feb 2026,8.60777798819,7.00949768017,9.54432912229,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+objectness_threshold,0.50,May,1 Jan–28 Feb 2026,6.96820122853,5.30956025113,8.24038345469,True,21.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+objectness_threshold,0.50,June,1 Jan–28 Feb 2026,9.83746055793,7.85069766919,10.8227971742,True,18.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+predicted_length,All,1–14 Mar,1 Jan–28 Feb 2026,9.42756636802,7.80612842175,10.1289151856,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+predicted_length,All,15–28 Mar,1 Jan–28 Feb 2026,11.4770373176,9.12838952304,11.0512718425,True,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+predicted_length,All,May,1 Jan–28 Feb 2026,8.19788379828,6.01333455603,8.21402651653,True,21.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+predicted_length,All,June,1 Jan–28 Feb 2026,10.4523018428,9.07414658985,11.9317290089,True,18.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+predicted_length,≥100 m,1–14 Mar,1 Jan–28 Feb 2026,0.819788379828,-0.962700103691,1.5745455481,False,7.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+predicted_length,≥100 m,15–28 Mar,1 Jan–28 Feb 2026,0.0,-2.18371205015,0.346902834178,False,7.0,no_change,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+predicted_length,≥100 m,May,1 Jan–28 Feb 2026,-0.339394645899,-2.23562928553,0.449123415789,False,21.0,decrease,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+predicted_length,≥100 m,June,1 Jan–28 Feb 2026,2.25441804453,-0.197605076006,2.82868654457,False,18.0,increase,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+predicted_length,≥200 m,1–14 Mar,1 Jan–28 Feb 2026,0.0,0.0,0.0,False,7.0,no_change,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+predicted_length,≥200 m,15–28 Mar,1 Jan–28 Feb 2026,0.0,0.0,0.0,False,7.0,no_change,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+predicted_length,≥200 m,May,1 Jan–28 Feb 2026,0.0,0.0,0.0,False,21.0,no_change,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate
+predicted_length,≥200 m,June,1 Jan–28 Feb 2026,0.0,0.0,0.0,False,18.0,no_change,within-year sensitivity of the SAR-derived activity proxy; not a detector-accuracy estimate

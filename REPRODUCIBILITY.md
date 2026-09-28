@@ -8,15 +8,18 @@ From the repository root, run:
 python reproduce_all.py --data-root data --output-root reproduced_outputs
 ```
 
-The command validates the data directory, recomputes the reported port–SAR and
-May–June NO₂ statistics, redraws eight figures, validates the provenance record
-for Supplementary Figure 2, validates ten supplementary tables and writes
-checksums, logs and a machine-readable output manifest. It performs no network
-requests.
+The command validates the compact workflow data directory, recomputes the
+reported port–SAR and May–June NO₂ statistics, redraws eight computational
+figures, validates the provenance record for the optical/SAR context panel,
+validates ten supplementary tables and writes checksums, logs and a
+machine-readable output manifest. It performs no network requests. The
+publication-facing Article tables are separately indexed under
+`article_data/`.
 
 ## Reproduced outputs
 
-- Main Figures 1 and 2;
+- two graphical composites used to verify the Article's regional and focal
+  time-series results;
 - Supplementary Figures 1 and 3–7;
 - provenance validation for the withheld Supplementary Figure 2 display;
 - Supplementary Tables 1–10;
@@ -41,8 +44,10 @@ under `data/files/statistical_inputs/`.
 
 Statistics outside the two declared core recomputations remain available as
 shared source-table values for display verification rather than full upstream
-re-estimation. Supplementary Figure 2 is excluded from the public rendering
-workflow because its pixel chips are not redistributed.
+re-estimation. The final four-figure Article layout is assembled from the
+verified outputs and the tables in `article_data/`. The optical/SAR chip panel
+is withheld from the public rendering workflow before acceptance because its
+third-party pixels are not redistributed.
 
 ## Determinism
 
