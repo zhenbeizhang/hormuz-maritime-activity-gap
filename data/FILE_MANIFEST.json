@@ -1,9 +1,9 @@
 {
   "files": [
     {
-      "bytes": 233126,
+      "bytes": 233091,
       "path": "FIELD_DICTIONARY.csv",
-      "sha256": "53d39284434f1268f612f6a5c02109538aae8e13356335c841d42d8b0e1c77aa"
+      "sha256": "b28826a694dbb9285ab7b73d6fc68eace49910d48801dd06a681e6e5d8c0a814"
     },
     {
       "bytes": 3331,
@@ -131,14 +131,14 @@
       "sha256": "aeceb06096bc6565cf9ee99c649fbb84f04131632f8a101efaac19f4a1ca259d"
     },
     {
-      "bytes": 435,
+      "bytes": 594,
       "path": "files/supplementary_tables/Supplementary_Table_02.csv",
-      "sha256": "12dfa56ce67e03fbfc390ec397b7368287ff0e542a05583871ab166576a5728e"
+      "sha256": "1e02bb49c773fab935a5c033927d520198d95cbe5fdc41c62dec0a5641b54886"
     },
     {
-      "bytes": 601,
+      "bytes": 899,
       "path": "files/supplementary_tables/Supplementary_Table_03.csv",
-      "sha256": "5f3dfc7071f2296310fa1c07d4c7c60a347d7abd57e08ad05e9f209433280b34"
+      "sha256": "11ad9a20548c17d09f70be29a730028e7f2d5472501bc08c5c3761bfbea74efd"
     },
     {
       "bytes": 358,
@@ -156,24 +156,24 @@
       "sha256": "77d82a17c90ec795a587e06af40156c0fcf293abc97d9e720a6315759a420b2a"
     },
     {
-      "bytes": 412,
+      "bytes": 420,
       "path": "files/supplementary_tables/Supplementary_Table_07.csv",
-      "sha256": "a57843f5c9f8080b2e2b1b875a3ebc668f7fb33d8d1daba43e13e0aacf35cc96"
+      "sha256": "1c9458e8bd509529b3749795ef24643fc486c99731d8daca580ef6df59887452"
     },
     {
-      "bytes": 161,
+      "bytes": 154,
       "path": "files/supplementary_tables/Supplementary_Table_08.csv",
-      "sha256": "c275aa19b7fda321dbfb18501e9b780b5fe4cb5225eaa30fa21ab3151dd62471"
+      "sha256": "5d7319d6a4c00d237f7780e7c12f90eb0ea32899697d88c198d892d8697cb3c0"
     },
     {
-      "bytes": 307,
+      "bytes": 325,
       "path": "files/supplementary_tables/Supplementary_Table_09.csv",
-      "sha256": "6d2479cde8490ce06e70cce09f68cf3c12208f1f50a5313da38623c00799fee4"
+      "sha256": "b48f335df3478fa3b417aa2cdd0b8fa1b3653a09aab77838eb96ee7d6fcccad5"
     },
     {
-      "bytes": 1060,
+      "bytes": 1197,
       "path": "files/supplementary_tables/Supplementary_Table_10.csv",
-      "sha256": "6425e0a58178da5029ff3fa9215fa05328ce1e6a6078e8391cbb4771ae7a60ea"
+      "sha256": "8a559b5b35cd14f10d4cfdfe9bdb4d4f098de290e63eb1a4180341e991ed68e4"
     },
     {
       "bytes": 855,
@@ -188,7 +188,7 @@
     {
       "bytes": 4349,
       "path": "SOURCE_DATA_INVENTORY.csv",
-      "sha256": "19ef006b2863f904004e2348b27e51200c5fe83aaa42c76cdb5ca14663bf64d0"
+      "sha256": "cfc8a15b1a1e1ecc1b6923bb5439e1501a7326103a55fe394893ebe867b29827"
     }
   ],
   "schema_version": "1.0.0"

@@ -203,6 +203,67 @@ def test_lightweight_diagnostic_is_not_mislabeled_as_submitted_figure_2() -> Non
     assert "cannot be regenerated" in article_readme
 
 
+def test_supplementary_table_labels_match_submission_terminology() -> None:
+    expected_headers = {
+        2: [
+            "Study water",
+            "Baseline median SAR-detected vessels/scene",
+            "June median SAR-detected vessels/scene",
+            "Interpretation",
+        ],
+        3: [
+            "Measure",
+            "Baseline",
+            "1–28 March",
+            "1 May–30 June",
+            "Comparison with metric-specific same-calendar 2022–2025 history",
+        ],
+        8: [
+            "Phase",
+            "Relative orbit",
+            "SAR-detected vessels within 75 m",
+            "Distances (m)",
+        ],
+        9: [
+            "Year",
+            "Port-call change (%)",
+            "Port 95% range (%)",
+            "SAR-detected-vessel-density change (%)",
+            "SAR 95% range (%)",
+        ],
+    }
+    for index in (2, 3, 7, 8, 9, 10):
+        article = ROOT / (
+            f"article_data/supplementary_tables/Supplementary_Table_{index}.csv"
+        )
+        workflow = DATA_ROOT / (
+            f"files/supplementary_tables/Supplementary_Table_{index:02d}.csv"
+        )
+        assert article.read_bytes() == workflow.read_bytes()
+        table = pd.read_csv(article, dtype=str, keep_default_na=False)
+        if index in expected_headers:
+            assert list(table.columns) == expected_headers[index]
+        flattened = "\n".join(table.astype(str).to_numpy().ravel())
+        assert "SAR-derived vessel-activity proxy" not in flattened
+        assert "SAR proxy" not in flattened
+        assert "SAR-proxy" not in flattened
+
+    table_7 = pd.read_csv(
+        ROOT / "article_data/supplementary_tables/Supplementary_Table_7.csv",
+        dtype=str,
+        keep_default_na=False,
+    )
+    assert "SAR-detected vessel density" in set(table_7["Domain"])
+    table_10 = pd.read_csv(
+        ROOT / "article_data/supplementary_tables/Supplementary_Table_10.csv",
+        dtype=str,
+        keep_default_na=False,
+    )
+    assert table_10["Check"].str.contains(
+        "SAR-detected vessel density", regex=False
+    ).sum() == 2
+
+
 def test_documented_evidence_matrix_key_and_missing_sentinel() -> None:
     source = pd.read_csv(
         DATA_ROOT

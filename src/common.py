@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 from PIL import Image, ImageChops, ImageStat
 
 
-DATA_DIRECTORY_SHA256 = "8fe02cc0030057d18bf64499171d8146516a744697dfe32bc43526c32ba4fca4"
+DATA_DIRECTORY_SHA256 = "58fcb06063f844fa7761babc00adbff3da0c71081f836ff4821583adfd4a1430"
 MAIN_SOURCE_FILES = [
     "files/main_figures/Figure_1_source_data.csv",
     "files/main_figures/Figure_2_source_data.csv",
