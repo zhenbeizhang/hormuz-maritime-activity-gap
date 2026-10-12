@@ -9,7 +9,7 @@ import pandas as pd
 import pytest
 
 from reproduce_all import reproduce
-from src.common import security_scan, validate_data_package
+from src.common import security_scan, sha256, validate_data_package
 from src.statistical_analysis import reproduce as reproduce_statistics
 
 
@@ -19,9 +19,13 @@ DATA_ROOT = ROOT / "data"
 
 def test_source_data_passes_integrity_checks() -> None:
     result = validate_data_package(DATA_ROOT)
+    expected = json.loads(
+        (ROOT / "expected_outputs.json").read_text(encoding="utf-8")
+    )
     assert result["checksum_errors"] == []
     assert result["canonical_member_count"] > 0
-    assert len(result["shapes"]) == 23
+    assert len(result["shapes"]) == 24
+    assert result["directory_canonical_sha256"] == expected["data_directory_sha256"]
 
 
 def test_modified_source_data_is_rejected(tmp_path: Path) -> None:
@@ -73,7 +77,7 @@ def test_article_facing_data_are_complete_and_publication_clean() -> None:
     assert article.is_dir()
     assert len(list((article / "main_figures").glob("Figure_*_source_data.csv"))) == 4
     assert len(list((article / "supplementary_figures").glob("Supplementary_Figure_*_source_data.csv"))) == 7
-    assert len(list((article / "supplementary_tables").glob("Supplementary_Table_*.csv"))) == 10
+    assert len(list((article / "supplementary_tables").glob("Supplementary_Table_*.csv"))) == 11
     assert len(list((article / "supplementary_data").glob("Supplementary_Data_*.csv"))) == 5
 
     forbidden = re.compile(
@@ -104,6 +108,99 @@ def test_article_facing_data_are_complete_and_publication_clean() -> None:
     assert float(row["absolute_change"]) == pytest.approx(2.13879147615e-05, abs=1e-16)
     assert float(row["ci95_lower_in_reported_scale"]) == pytest.approx(1.04247261742e-05, abs=1e-16)
     assert float(row["ci95_upper_in_reported_scale"]) == pytest.approx(3.3562490962e-05, abs=1e-16)
+
+
+def test_article_facing_manifest_and_checksums_match_exact_files() -> None:
+    article = ROOT / "article_data"
+    excluded = {"MANIFEST.csv", "CHECKSUMS.sha256"}
+    content_files = {
+        path.relative_to(article).as_posix(): path
+        for path in article.rglob("*")
+        if path.is_file() and path.relative_to(article).as_posix() not in excluded
+    }
+
+    manifest = pd.read_csv(
+        article / "MANIFEST.csv", dtype=str, keep_default_na=False
+    )
+    assert not manifest["path"].duplicated().any()
+    assert set(manifest["path"]) == set(content_files)
+    for row in manifest.itertuples(index=False):
+        path = content_files[row.path]
+        assert int(row.bytes) == path.stat().st_size
+        assert row.sha256 == sha256(path)
+        if path.suffix.lower() == ".csv":
+            table = pd.read_csv(path, dtype=str, keep_default_na=False)
+            assert int(row.rows) == len(table)
+            assert int(row.columns) == len(table.columns)
+        else:
+            assert row.rows == ""
+            assert row.columns == ""
+
+    checksum_rows: dict[str, str] = {}
+    for line in (article / "CHECKSUMS.sha256").read_text(
+        encoding="utf-8"
+    ).splitlines():
+        if not line.strip():
+            continue
+        digest, relative = line.split("  ", 1)
+        assert relative not in checksum_rows
+        checksum_rows[relative] = digest
+    expected_checksum_files = {
+        **content_files,
+        "MANIFEST.csv": article / "MANIFEST.csv",
+    }
+    assert set(checksum_rows) == set(expected_checksum_files)
+    for relative, path in expected_checksum_files.items():
+        assert checksum_rows[relative] == sha256(path)
+
+
+def test_figure_2_public_source_data_follow_current_panel_semantics() -> None:
+    source = pd.read_csv(
+        ROOT / "article_data/main_figures/Figure_2_source_data.csv",
+        dtype=str,
+        keep_default_na=False,
+    )
+    observed = {
+        (panel, record_type): int(count)
+        for (panel, record_type), count in source.groupby(
+            ["panel", "record_type"]
+        ).size().items()
+    }
+    assert observed == {
+        ("a", "geometry"): 1,
+        ("a", "optical_context"): 1,
+        ("b", "sar_patch"): 5,
+        ("c", "cross_detector_overlap"): 4,
+        ("d", "scene_count_agreement"): 24,
+    }
+    assert not source["record_type"].isin(
+        ["blinded_manual_review", "optical_context_availability"]
+    ).any()
+
+
+def test_lightweight_diagnostic_is_not_mislabeled_as_submitted_figure_2() -> None:
+    crosswalk = pd.read_csv(
+        DATA_ROOT / "FIGURE_TABLE_CROSSWALK.csv",
+        dtype=str,
+        keep_default_na=False,
+    )
+    diagnostic = crosswalk.loc[
+        crosswalk["source_data"].eq(
+            "files/main_figures/Figure_2_source_data.csv"
+        )
+    ]
+    assert len(diagnostic) == 1
+    row = diagnostic.iloc[0]
+    assert row["display_item"] == (
+        "Lightweight focal analytical diagnostic (not submitted Figure 2)"
+    )
+    assert "no current manuscript figure number" in row["reproduction_mode"]
+
+    article_readme = (ROOT / "article_data/README.md").read_text(
+        encoding="utf-8"
+    )
+    assert "complete submitted Main Figure 2" in article_readme
+    assert "cannot be regenerated" in article_readme
 
 
 def test_documented_evidence_matrix_key_and_missing_sentinel() -> None:
@@ -464,14 +561,16 @@ def test_complete_lightweight_reproduction(tmp_path: Path) -> None:
     result = reproduce(DATA_ROOT, output)
     assert result["status"] == "LIGHTWEIGHT_REPRODUCTION_COMPLETE"
     assert len(result["figures"]) == 9
-    assert len(result["supplementary_tables"]) == 10
+    assert len(result["supplementary_tables"]) == 11
     assert len(list((output / "figures").glob("*.pdf"))) == 8
     assert len(list((output / "figures").glob("*.svg"))) == 8
     assert len(list((output / "figures_600dpi").glob("*.png"))) == 8
-    assert len(list((output / "supplementary_tables").glob("*.csv"))) == 10
+    assert len(list((output / "supplementary_tables").glob("*.csv"))) == 11
     report = json.loads((output / "qa/REPRODUCIBILITY_REPORT.json").read_text(encoding="utf-8"))
     assert report["security_findings"] == []
     assert report["statistics"]["port_sar"]["status"] == "PASS"
     assert report["statistics"]["no2"]["status"] == "PASS"
     statuses = {row["figure"]: row["status"] for row in report["figure_output_inventory"]}
+    assert statuses["Focal_diagnostic"] == "GENERATED"
+    assert "Figure_2" not in statuses
     assert statuses["Supplementary_Figure_2"] == "WITHHELD_PRE_ACCEPTANCE"

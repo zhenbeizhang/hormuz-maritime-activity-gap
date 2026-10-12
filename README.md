@@ -15,7 +15,7 @@ columns into surface concentration, personal exposure or health outcomes.
 ## Repository contents
 
 - `article_data/`: publication-facing source tables for four main figures,
-  seven supplementary figures, ten supplementary tables and five
+  seven supplementary figures, eleven supplementary tables and five
   Supplementary Data files, with a manifest and checksums.
 - `data/`: compact inputs used by the lightweight statistical and plotting
   workflow to independently recompute the core port–SAR and May–June NO₂
@@ -30,10 +30,14 @@ The Article-facing file inventory is described in
 [`article_data/README.md`](article_data/README.md). The exact statistical boundary is described in
 [`docs/STATISTICAL_REPRODUCIBILITY.md`](docs/STATISTICAL_REPRODUCIBILITY.md).
 
-Rendered manuscript figures are generated locally from the shared source tables
-and plotting code. The optical/SAR chip panel in Supplementary Figure 2 is
-documented through its source table and provenance records because the
-third-party pixel chips are not redistributed.
+The public plotting workflow generates analytical verification composites from
+the shared source tables. Current submission numbering and publication-facing
+source tables are indexed separately under `article_data/`; the workflow does
+not claim to recreate every final manuscript layout. The complete submitted
+Main Figure 2 and Supplementary Figure 2 include third-party optical/SAR pixel
+chips that are not redistributed, so their public records retain geometry,
+derived values, automatic method-comparison results and provenance rather than
+the display pixels.
 
 ## Reproduce the figures and tables
 
@@ -54,7 +58,7 @@ The command generates computational views used to verify the Article:
 - the May–June population-weighted NO₂ absolute differences and 5,000-
   replicate UTC-week cluster bootstrap for four fixed analytical domains;
 - 600-dpi PNG copies and a generated-output checksum inventory;
-- validated copies of ten supplementary tables;
+- validated copies of eleven supplementary tables;
 - copied figure source data, checksums, a run log and a machine-readable output
   manifest.
 
@@ -74,10 +78,11 @@ population weights or repeat the upstream TROPOMI/ERA5 processing. The shared
 NO₂ daily input contains population-weighted aggregate values, coverage and
 eligibility fields, not raw pixels.
 
-Supplementary Figure 2 is not rendered by the public package because its
-underlying optical and SAR pixel chips are not redistributed. Its source table
-documents geometry and imagery lineage, and the run manifest records this
-exception explicitly.
+The complete submitted Main Figure 2 and Supplementary Figure 2 are not
+rendered by the public package because their underlying optical and SAR pixel
+chips are not redistributed. Their source tables document geometry, derived
+automatic-validation values and imagery lineage, and the run manifest records
+the pixel-redistribution exception explicitly.
 
 ## Data sources and interpretation
 

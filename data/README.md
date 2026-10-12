@@ -5,9 +5,13 @@ reproduction workflow.
 
 ## Contents
 
-- `files/main_figures/`: source tables for Main Figures 1 and 2.
+- `files/main_figures/`: source tables used to redraw the current manuscript
+  Figure 1 and a separate lightweight focal diagnostic composite. The latter
+  verifies focal port–SAR–NO₂ values but is not the submitted manuscript
+  Figure 2; its legacy filename is retained only for workflow compatibility,
+  and current submission numbering is indexed under `../article_data/`.
 - `files/supplementary_figures/`: source tables for Supplementary Figures 1–7.
-- `files/supplementary_tables/`: Supplementary Tables 1–10.
+- `files/supplementary_tables/`: Supplementary Tables 1–11.
 - `files/analysis_ready/`: five supplementary datasets plus compact supporting
   timelines used to document the focal comparison and sensitivity analyses.
 - `FIELD_DICTIONARY.csv`: field-level names, types, units and missing-value

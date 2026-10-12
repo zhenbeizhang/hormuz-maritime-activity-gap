@@ -10,15 +10,19 @@ submitted manuscript and Supplementary Information.
 - `main_figures/`: source tables for Main Figures 1–4, the nitrogen-dioxide
   pixel map and Main Table 1.
 - `supplementary_figures/`: source tables for Supplementary Figures 1–7.
-- `supplementary_tables/`: Supplementary Tables 1–10 in machine-readable form.
+- `supplementary_tables/`: Supplementary Tables 1–11 in machine-readable form.
 - `supplementary_data/`: the five Supplementary Data files supplied with the
   Article.
 - `MANIFEST.csv` and `CHECKSUMS.sha256`: file dimensions and integrity records.
 
-Display-ready journal figures are intentionally not stored here. They are
-embedded in the submission manuscript and can be generated from the shared
-tables and project code, except for the optical and SAR pixel-chip panel whose
-third-party pixels are not redistributed.
+Display-ready journal figures are intentionally not stored here. The tables
+support the displayed numerical, geometrical and aggregate elements, but the
+lightweight public workflow produces verification composites rather than every
+final manuscript layout. In particular, the complete submitted Main Figure 2
+and Supplementary Figure 2 cannot be regenerated from this repository because
+their optical and SAR pixel chips are third-party data that are not
+redistributed. Their public records retain analytical geometry, derived scores,
+automatic method-comparison results and provider provenance.
 
 ## Interpretation boundaries
 

@@ -1,5 +1,5 @@
 {
-  "data_directory_sha256": "db14fd7d9797e1c433a2e34f7307d1b6c61a87b26031b024e2bcda0e534f5fd3",
+  "data_directory_sha256": "8fe02cc0030057d18bf64499171d8146516a744697dfe32bc43526c32ba4fca4",
   "figures": {
     "Figure_1": {
       "header": [
@@ -47,7 +47,7 @@
       ],
       "source": "files/main_figures/Figure_1_source_data.csv"
     },
-    "Figure_2": {
+    "Focal_diagnostic": {
       "header": [
         "source_section",
         "record_type",
@@ -418,6 +418,19 @@
         3
       ],
       "source": "files/supplementary_tables/Supplementary_Table_10.csv"
+    },
+    "11": {
+      "header": [
+        "Check",
+        "Design",
+        "Result"
+      ],
+      "sha256": "0b032bfc1c6dbaee246499cd9933e48e00bcd613edd315a88a402217d2f8ed24",
+      "shape": [
+        7,
+        3
+      ],
+      "source": "files/supplementary_tables/Supplementary_Table_11.csv"
     },
     "2": {
       "header": [

@@ -18,7 +18,7 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 from matplotlib.colors import BoundaryNorm, ListedColormap
 from matplotlib.lines import Line2D
-from matplotlib.patches import Patch, Rectangle
+from matplotlib.patches import Patch, Polygon, Rectangle
 from matplotlib.ticker import MaxNLocator
 import numpy as np
 import pandas as pd
@@ -139,10 +139,16 @@ def panel_label(
 
 
 def clean(ax: plt.Axes, grid: str | None = "y") -> None:
+    """Apply the shared axis treatment without decorative interior grids.
+
+    ``grid`` is retained in the signature for backwards compatibility with
+    the public reproduction driver.  Scientifically meaningful reference
+    lines and paired-observation links are drawn explicitly by their panels
+    and are therefore unaffected.
+    """
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
-    if grid:
-        ax.grid(axis=grid, color=GRID, lw=0.38, zorder=0)
+    ax.grid(False)
 
 
 def _plot_land(
@@ -166,6 +172,89 @@ def _plot_land(
 def _water_anchor(waters: gpd.GeoDataFrame, region_id: str):
     geom = waters.loc[waters["region_id"].eq(region_id), "geometry"].iloc[0]
     return geom.representative_point()
+
+
+def _add_north_arrow(ax: plt.Axes) -> None:
+    """Add a compact, print-safe north arrow in axes coordinates."""
+    x = 0.94
+    tip_y = 0.905
+    base_y = 0.878
+    stem_y = 0.825
+    ax.text(
+        x,
+        0.928,
+        "N",
+        transform=ax.transAxes,
+        ha="center",
+        va="bottom",
+        fontsize=5.8,
+        fontweight="bold",
+        color=BLACK,
+        zorder=11,
+    )
+    ax.add_patch(
+        Polygon(
+            [(x, tip_y), (x - 0.0115, base_y), (x + 0.0115, base_y)],
+            closed=True,
+            transform=ax.transAxes,
+            facecolor=BLACK,
+            edgecolor=BLACK,
+            linewidth=0.45,
+            clip_on=False,
+            zorder=11,
+        )
+    )
+    ax.plot(
+        [x, x],
+        [stem_y, base_y],
+        transform=ax.transAxes,
+        color=BLACK,
+        lw=0.62,
+        solid_capstyle="butt",
+        clip_on=False,
+        zorder=11,
+    )
+
+
+def _add_scale_bar(
+    ax: plt.Axes,
+    extent: tuple[float, float, float, float],
+    scale_km: float,
+) -> None:
+    """Draw one restrained end-capped scale bar at the mapped latitude."""
+    x_span = extent[1] - extent[0]
+    y_span = extent[3] - extent[2]
+    x0 = extent[0] + 0.08 * x_span
+    y0 = extent[2] + 0.055 * y_span
+    dx = scale_km / (111.32 * np.cos(np.deg2rad(np.mean(extent[2:]))))
+    cap = 0.010 * y_span
+    ax.plot(
+        [x0, x0 + dx],
+        [y0, y0],
+        color=BLACK,
+        lw=0.65,
+        solid_capstyle="butt",
+        zorder=10,
+    )
+    for x in (x0, x0 + dx):
+        ax.plot(
+            [x, x],
+            [y0 - cap / 2, y0 + cap / 2],
+            color=BLACK,
+            lw=0.65,
+            solid_capstyle="butt",
+            zorder=10,
+        )
+    ax.text(
+        x0 + dx / 2,
+        y0 + 1.15 * cap,
+        f"{scale_km:g} km",
+        ha="center",
+        va="bottom",
+        fontsize=5.5,
+        color=BLACK,
+        zorder=10,
+    )
 
 
 def _draw_map_frame(
@@ -243,31 +332,8 @@ def _draw_map_frame(
         ax.set_yticks([])
 
     if north:
-        ax.annotate(
-            "N",
-            xy=(0.94, 0.92),
-            xytext=(0.94, 0.81),
-            xycoords="axes fraction",
-            ha="center",
-            va="bottom",
-            fontsize=5.9,
-            fontweight="bold",
-            arrowprops={"arrowstyle": "-|>", "lw": 0.7, "color": BLACK},
-        )
-
-    x0 = extent[0] + 0.08 * (extent[1] - extent[0])
-    y0 = extent[2] + 0.055 * (extent[3] - extent[2])
-    dx = scale_km / (111.32 * np.cos(np.deg2rad(np.mean(extent[2:]))))
-    ax.plot([x0, x0 + dx], [y0, y0], color=BLACK, lw=1.1, zorder=9)
-    ax.text(
-        x0 + dx / 2,
-        y0 + 0.025 * (extent[3] - extent[2]),
-        f"{scale_km:g} km",
-        ha="center",
-        va="bottom",
-        fontsize=5.3,
-        color=BLACK,
-    )
+        _add_north_arrow(ax)
+    _add_scale_bar(ax, extent, scale_km)
 
 
 def draw_map(ax: plt.Axes, data: dict[str, Any]) -> None:
@@ -539,13 +605,16 @@ def draw_sar_strips(container: plt.Axes, sar: pd.DataFrame) -> None:
         va="top",
     )
 
+    # Reserve a narrow label rail to the left of each plot column.  This keeps
+    # the water names separate from the numerical y ticks while preserving the
+    # six equal data frames and their common time axis.
     positions = [
-        (0.005, 0.675, 0.465, 0.225),
-        (0.535, 0.675, 0.465, 0.225),
-        (0.005, 0.365, 0.465, 0.225),
-        (0.535, 0.365, 0.465, 0.225),
-        (0.005, 0.055, 0.465, 0.225),
-        (0.535, 0.055, 0.465, 0.225),
+        (0.065, 0.675, 0.405, 0.225),
+        (0.595, 0.675, 0.405, 0.225),
+        (0.065, 0.365, 0.405, 0.225),
+        (0.595, 0.365, 0.405, 0.225),
+        (0.065, 0.055, 0.405, 0.225),
+        (0.595, 0.055, 0.405, 0.225),
     ]
 
     for i, aoi in enumerate(SAR_ORDER):
@@ -613,11 +682,11 @@ def draw_sar_strips(container: plt.Axes, sar: pd.DataFrame) -> None:
             spine.set_color(BLACK)
             spine.set_linewidth(0.48)
         ax.text(
-            0.0,
+            -0.145,
             1.025,
             SAR_LABELS[aoi],
             transform=ax.transAxes,
-            ha="left",
+            ha="right",
             va="bottom",
             fontsize=5.95,
             fontweight="bold" if focal else "normal",
@@ -625,15 +694,16 @@ def draw_sar_strips(container: plt.Axes, sar: pd.DataFrame) -> None:
             clip_on=False,
         )
         ax.text(
-            1.0,
-            1.025,
+            0.985,
+            0.965,
             f"n={len(row)}",
             transform=ax.transAxes,
             ha="right",
-            va="bottom",
+            va="top",
             fontsize=5.35,
             color=BLACK,
-            clip_on=False,
+            clip_on=True,
+            bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.25, "alpha": 0.72},
         )
 
     container.legend(

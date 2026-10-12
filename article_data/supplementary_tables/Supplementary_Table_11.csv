@@ -1,0 +1,8 @@
+Check,Design,Result
+Phase-balanced scene selection,"15 Sentinel-1 scenes; 5 each from 1 January–28 February (baseline), 1–28 March (acute) and 1 May–30 June (recovery-stage); 5 per relative orbit 57, 93 and 166",Selection did not use detection count or effect size
+"Primary → CFAR, 1 January–28 February baseline",150-m association,240/252 (95.2%)
+"Primary → CFAR, 1–28 March acute",150-m association,350/366 (95.6%)
+"Primary → CFAR, 1 May–30 June recovery-stage",150-m association,305/322 (94.7%)
+Independent neural → primary,200-m association,112/113 (99.1%)
+Fold × threshold × window,4 folds × 3 thresholds × 7 windows,"84/84 increases; 81/84 lower bounds > 0; primary fold 21/21"
+Omission and historical robustness,"±7-, ±8- and ±12-day matching; leave-one-date and leave-one-orbit checks",Positive focal direction retained

@@ -123,7 +123,7 @@ def _write_markdown_qa(output_root: Path, payload: dict[str, Any]) -> None:
         f"- Source-data directory SHA-256: `{payload['data_package']['directory_canonical_sha256']}`",
         f"- Figure records validated: {len(figures)}/9",
         f"- Figures rendered: {rendered_figures}/9",
-        f"- Supplementary tables validated and copied: {len(tables)}/10",
+        f"- Supplementary tables validated and copied: {len(tables)}/11",
         "- Scientific model runs: 0",
         f"- Port–SAR bootstrap replicates: {payload['statistics']['port_sar']['bootstrap_replicates']}",
         f"- NO2 bootstrap replicates: {payload['statistics']['no2']['bootstrap_replicates_per_domain']} across {payload['statistics']['no2']['analytical_domains']} analytical domains",

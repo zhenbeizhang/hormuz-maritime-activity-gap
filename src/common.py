@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 from PIL import Image, ImageChops, ImageStat
 
 
-DATA_DIRECTORY_SHA256 = "db14fd7d9797e1c433a2e34f7307d1b6c61a87b26031b024e2bcda0e534f5fd3"
+DATA_DIRECTORY_SHA256 = "8fe02cc0030057d18bf64499171d8146516a744697dfe32bc43526c32ba4fca4"
 MAIN_SOURCE_FILES = [
     "files/main_figures/Figure_1_source_data.csv",
     "files/main_figures/Figure_2_source_data.csv",
@@ -27,7 +27,7 @@ SUPPLEMENTARY_SOURCE_FILES = [
 ]
 TABLE_FILES = [
     f"files/supplementary_tables/Supplementary_Table_{i:02d}.csv"
-    for i in range(1, 11)
+    for i in range(1, 12)
 ]
 STATISTICAL_INPUT_FILES = [
     "files/statistical_inputs/khor_fakkan_port_daily.csv",

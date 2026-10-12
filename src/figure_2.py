@@ -1,8 +1,11 @@
-"""Reproduce the focal Khor Fakkan evidence figure from packaged source data.
+"""Reproduce a lightweight focal Khor Fakkan diagnostic composite.
 
-The figure is descriptive and domain-separated: provider-recorded port calls,
-SAR-derived vessel-activity proxies and population-weighted tropospheric NO2
-columns are never combined into a single index or interpreted as a causal chain.
+This verification composite is not the submitted manuscript Figure 2, which
+contains the automatic cross-method validation panels indexed under
+``article_data/``. The diagnostic remains descriptive and domain-separated:
+provider-recorded port calls, SAR-derived vessel-activity proxies and
+population-weighted tropospheric NO2 columns are never combined into a single
+index or interpreted as a causal chain.
 """
 from __future__ import annotations
 
@@ -143,10 +146,10 @@ def _phase_shading(ax: plt.Axes, labels: bool = False) -> None:
 
 def _validate_source(source: pd.DataFrame) -> dict[str, Any]:
     if source.shape != (240, 78):
-        raise ValueError(f"Figure 2 packaged source shape changed: {source.shape}")
+        raise ValueError(f"Focal diagnostic packaged source shape changed: {source.shape}")
     counts = source["source_section"].value_counts().to_dict()
     if counts != {"retained_figure_content": 231, "acute_joint_extremeness": 9}:
-        raise ValueError(f"Figure 2 source-section contract changed: {counts}")
+        raise ValueError(f"Focal diagnostic source-section contract changed: {counts}")
     record_counts = source["record_type"].value_counts(dropna=False).to_dict()
     required = {
         "daily_port": 181,
@@ -156,7 +159,9 @@ def _validate_source(source: pd.DataFrame) -> dict[str, Any]:
     }
     for key, expected in required.items():
         if int(record_counts.get(key, 0)) != expected:
-            raise ValueError(f"Figure 2 {key} row count changed: {record_counts.get(key)}")
+            raise ValueError(
+                f"Focal diagnostic {key} row count changed: {record_counts.get(key)}"
+            )
     eligible_sar = source.loc[
         source["record_type"].eq("sar_date_timeline")
         & source["primary_timeline_eligible"].eq(True)
@@ -623,7 +628,7 @@ def reproduce(data_root: Path, output_root: Path) -> dict[str, Any]:
     draw_panel_b(fig.add_subplot(gs[1, 0]), source)
     draw_panel_c(fig.add_subplot(gs[1, 1]), source)
 
-    artifact = save_figure(fig, "Figure_2", output_root)
+    artifact = save_figure(fig, "Focal_diagnostic", output_root)
     copied = copy_source(source_path, output_root)
     artifact.update(
         {
@@ -649,11 +654,11 @@ def reproduce(data_root: Path, output_root: Path) -> dict[str, Any]:
             "bootstrap_runs": 0,
         }
     )
-    write_json(output_root / "qa/Figure_2_reproduction.json", artifact)
+    write_json(output_root / "qa/Focal_diagnostic_reproduction.json", artifact)
     write_json(
-        output_root / "logs/Figure_2_render.json",
+        output_root / "logs/Focal_diagnostic_render.json",
         {
-            "figure": "Figure_2",
+            "figure": "Focal_diagnostic",
             "status": "render_complete",
             "source_sha256": artifact["source_sha256"],
             "source_checks": source_checks,
