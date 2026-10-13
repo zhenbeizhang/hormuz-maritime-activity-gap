@@ -1,58 +1,51 @@
 # Statistical reproducibility
 
-The public workflow separates core statistics that can be recomputed from
-shared non-pixel inputs from displays that can only be redrawn from shared
-source tables.
+The public workflow starts from processed, non-pixel inputs. It reproduces core
+reported statistics without downloading restricted or very large products.
 
-To run only the statistical checks:
+## Port and aggregate SAR
 
 ```bash
-python -m src.statistical_analysis --data-root data --output-root statistical_outputs
+python -m src.analysis.port_sar_uncertainty --data-root data --output-root reproduced_outputs/port_sar
 ```
 
-## Recomputed port–SAR comparison
+The input contains 740 fixed-window Khor Fakkan daily values: 59 baseline, 28
+acute and 61 recovery days for each year from 2022 through 2026. The program
+computes port contrasts and 5,000 circular moving-block bootstrap replicates at
+the prespecified 7-day block length, with 5- and 14-day sensitivity analyses.
+Historical extrema are reselected within each replicate. It also verifies the
+delayed aggregate SAR sensitivity and detector-opportunity records in current
+Supplementary Data 5.
 
-The repository includes 435 daily IMF PortWatch observations for Khor Fakkan
-(59 baseline and 28 acute-window days in each year from 2022 through 2026) and
-96 eligible Sentinel-1 dates in the fixed 244.141701 km² adjacent-offshore
-research water. The SAR input contains acquisition dates, relative orbits,
-public Sentinel-1 product identifiers and project-derived vessel-like activity
-densities.
+The public package does not contain coordinate-level detector outputs or input
+GeoTIFFs. Consequently it validates, but does not rerun, the coordinate-level
+spatial opportunity null. Pure one-to-one matching and rigid-shift functions
+are public and tested.
 
-`src/statistical_analysis.py` recomputes each year's baseline-to-acute change.
-It then runs 5,000 bootstrap replicates with seed 20260817. PortWatch UTC days
-are sampled within year and stage. SAR UTC dates are sampled within year,
-stage and relative orbit. Historical extrema are reselected in every
-replicate. The program verifies the point estimates and reported contrasts
-against Supplementary Data 5.
+## Population-weighted NO2
 
-The public input begins after scene matching: it does not reselect eligible SAR
-dates from the full candidate-scene archive. Product identifiers and the fixed
-matching parameters are retained so that this boundary is explicit.
+```bash
+python -m src.analysis.no2_full_refit_bootstrap --input data/files/statistical_inputs/no2_full_refit_daily_design.csv --output-root reproduced_outputs/no2
+```
 
-## Recomputed May–June NO₂ comparison
+The input contains 906 daily rows for each fixed 10, 20 and 30 km domain. Each
+bootstrap replicate resamples daily blocks, refits the fixed historical OLS
+design, repeats leave-one-year-out prediction for the historical comparison,
+and preserves eligibility and coverage. The primary block length is 7 days,
+with 5- and 14-day sensitivities and 5,000 replicates per domain and block.
+Outputs include intervals, model diagnostics and population-coverage summaries.
 
-The repository includes 3,624 daily aggregate records for four fixed
-analytical domains and five years. Each row contains population-weighted
-observed and expected tropospheric NO₂ columns, their anomaly, spatial and
-population coverage, model reliability and the resulting eligibility flag.
-Raw TROPOMI pixels, ERA5 grids and population rasters are not included.
+The atmospheric quantity is a population-weighted tropospheric NO2 column
+anomaly. It is not a source-attribution, surface-concentration, personal-
+exposure, health-effect or causal estimate.
 
-The program reapplies one eligibility rule to every year, computes the 2026
-May–June mean anomaly and the equal-weight mean of the 2022–2025 within-year
-means, and reports their absolute difference in mol m⁻². Uncertainty uses
-5,000 within-year UTC-week cluster bootstrap replicates for each analytical
-domain. Recomputed results are checked against the shared May–June summary.
+## Figure verification and tests
 
-## Not recomputed from raw observations
+```bash
+python -m src.figures.article_figures --article-data article_data --output-root reproduced_outputs/figures
+python -m pytest -q
+```
 
-The public workflow does not acquire or preprocess satellite pixels, rerun
-xView3 inference, fit the meteorological expectation model or reconstruct
-population weights. It also does not repeat SAR eligible-date selection from the
-complete candidate archive. Other supplementary statistics are checked as
-shared source-table values and used to redraw displays; they are not presented
-as end-to-end raw-data reproduction.
-
-All parameters, eligibility rules, seeds and source links are in
-`data/files/statistical_inputs/`. Source-specific reuse terms continue to apply
-to provider-derived values; see `DATA_RIGHTS.md`.
+The figure program redraws analytical verification views from Figure 3 and
+Figure 4 source tables. It does not reproduce third-party pixel chips or the
+editorial journal layout.

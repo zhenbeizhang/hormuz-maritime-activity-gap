@@ -1,10 +1,10 @@
-Check,Result,Interpretation boundary
-"2026 minus 2024, port calls",−43.9 percentage points,Point contrast; port dimension only
-"2026 minus 2024, SAR-detected vessel density",+23.2 percentage points,Point contrast; SAR dimension only
-"2026 minus reselected historical minimum, port calls",95% interval -57.3 to +26.4 pp,Crosses zero
-"2026 minus reselected historical maximum, SAR-detected vessel density",95% interval +9.0 to +35.1 pp,Entirely positive
-Bootstrap joint-dominance proportion,0.8288,Resampling proportion; not a P value
-Historical-date tolerances,"±7, ±8 and ±12 days",Point dominance and basic directions retained
-Acute-analysis leave-one-SAR-date and leave-one-relative-orbit diagnostics,"All eligible baseline/March SAR dates; relative orbits 57, 93 and 166",Point dominance and basic directions retained
-2022–2026 March SAR sampling,"Baseline/March eligible dates: 14/6, 13/6, 13/6, 13/6 and 14/5; three March relative orbits in each year; orbit 57 contributed one 2026 date",Point estimates and intervals condition on the observed acquisition sets
-Overall interpretation,"Direction repeats, but the 2026 magnitude is partly distinct","Descriptive, post-result focal case"
+Check,Audited result,Interpretation boundary
+March calls versus 2026 baseline,"-52.7%; seven-day block interval -88.5% to -9.7%",Within-year decline supported
+March calls versus reselected historical minimum,-60.2 to +24.3 percentage points,Interval crosses zero
+May-June calls versus 2026 baseline,"+75.7%; seven-day block interval +30.8% to +151.5%",Within-year rebound supported
+May-June calls versus equal-weight history,"+18.3%; seven-day block interval -2.8% to +42.0%",Historical contrast crosses zero
+Five March SAR dates,"27.46, 34.84, 27.81, 32.79 and 27.81 detections per 100 km2",Five acquisition dates; no five-scene confidence interval
+Three calendar tolerances,"+/-7, +/-8 and +/-12 days; all changes positive",Sensitivity settings
+Twenty-two deletion checks,"5 acute dates, 14 baseline dates and 3 relative orbits omitted in turn",Sensitivity settings
+All 25 prespecified SAR checks,"+41.4% to +64.9%; 2026 ranked first in every setting","Sparse-acquisition robustness range, not confidence interval"
+SAR margin above reselected historical maximum,+19.0 to +42.9 percentage points across 25 checks,"Robustness range, not confidence interval"

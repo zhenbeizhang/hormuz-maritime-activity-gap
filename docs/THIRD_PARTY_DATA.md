@@ -66,7 +66,7 @@ vessel identities or an exhaustive vessel census.
 - Weight-file SHA-256: `8c3b45950ec1c1d954c4a7a901744d8024b59be75684b92064da0a5a9c979297`
 
 The downloaded public weights were applied without retraining or fine-tuning as
-an independent detector cross-check on 12 Sentinel-1 scenes. The weights are not
+an independent detector cross-check on 15 Sentinel-1 scenes. The weights are not
 redistributed. This comparison describes detector overlap under direct
 application; it is not a ground-truth accuracy or recall estimate. No upstream
 revision is stated because one was not recorded in the retained provenance.

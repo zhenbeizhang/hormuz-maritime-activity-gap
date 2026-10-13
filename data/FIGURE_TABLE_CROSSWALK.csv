@@ -1,23 +1,11 @@
 display_item,source_data,reproduction_code,reproduction_mode
-Five-year port–SAR statistics,"files/statistical_inputs/khor_fakkan_port_daily.csv; files/statistical_inputs/khor_fakkan_sar_eligible_dates.csv",src/statistical_analysis.py,point estimates and stratified bootstrap recomputation
-May–June NO2 statistics,"files/statistical_inputs/no2_daily_aggregates.csv; files/statistical_inputs/no2_may_june_summary.csv",src/statistical_analysis.py,absolute-difference and UTC-week cluster bootstrap recomputation
-Figure 1,files/main_figures/Figure_1_source_data.csv,src/figure_1.py,source-data redraw
-Lightweight focal analytical diagnostic (not submitted Figure 2),files/main_figures/Figure_2_source_data.csv,src/figure_2.py,"source-data redraw for numerical verification; no current manuscript figure number"
-Supplementary Figure 1,files/supplementary_figures/Supplementary_Figure_1_source_data.csv,src/supplementary_figures.py,source-data redraw
-Supplementary Figure 2,files/supplementary_figures/Supplementary_Figure_2_source_data.csv,src/supplementary_figures.py,withheld before acceptance; public provenance and geometry only
-Supplementary Figure 3,files/supplementary_figures/Supplementary_Figure_3_source_data.csv,src/supplementary_figures.py,source-data redraw
-Supplementary Figure 4,files/supplementary_figures/Supplementary_Figure_4_source_data.csv,src/supplementary_figures.py,source-data redraw
-Supplementary Figure 5,files/supplementary_figures/Supplementary_Figure_5_source_data.csv,src/supplementary_figures.py,source-data redraw
-Supplementary Figure 6,files/supplementary_figures/Supplementary_Figure_6_source_data.csv,src/supplementary_figures.py,source-data redraw
-Supplementary Figure 7,files/supplementary_figures/Supplementary_Figure_7_source_data.csv,src/supplementary_figures.py,source-data redraw
-Supplementary Table 1,files/supplementary_tables/Supplementary_Table_01.csv,reproduce_all.py,"schema, row-count and checksum validation"
-Supplementary Table 2,files/supplementary_tables/Supplementary_Table_02.csv,reproduce_all.py,"schema, row-count and checksum validation"
-Supplementary Table 3,files/supplementary_tables/Supplementary_Table_03.csv,reproduce_all.py,"schema, row-count and checksum validation"
-Supplementary Table 4,files/supplementary_tables/Supplementary_Table_04.csv,reproduce_all.py,"schema, row-count and checksum validation"
-Supplementary Table 5,files/supplementary_tables/Supplementary_Table_05.csv,reproduce_all.py,"schema, row-count and checksum validation"
-Supplementary Table 6,files/supplementary_tables/Supplementary_Table_06.csv,reproduce_all.py,"schema, row-count and checksum validation"
-Supplementary Table 7,files/supplementary_tables/Supplementary_Table_07.csv,reproduce_all.py,"schema, row-count and checksum validation"
-Supplementary Table 8,files/supplementary_tables/Supplementary_Table_08.csv,reproduce_all.py,"schema, row-count and checksum validation"
-Supplementary Table 9,files/supplementary_tables/Supplementary_Table_09.csv,reproduce_all.py,"schema, row-count and checksum validation"
-Supplementary Table 10,files/supplementary_tables/Supplementary_Table_10.csv,reproduce_all.py,"schema, row-count and checksum validation"
-Supplementary Table 11,files/supplementary_tables/Supplementary_Table_11.csv,reproduce_all.py,"schema, row-count and checksum validation"
+Figure 2 panel a,files/main_figures/Figure_2_panel_a_geometry.geojson,not_applicable,public analytical geometry
+Figure 2 panel b,files/main_figures/Figure_2_panel_b_display_metadata.csv,not_applicable,third-party pixel excluded; metadata and provenance supplied
+Figure 2 panels c-d,files/main_figures/Figure_2_panels_c_d_source_data.csv,not_applicable,public analytical source table
+Figure 3,files/main_figures/Figure_3_source_data.csv,src/figures/article_figures.py,analytical verification render
+Figure 4,files/main_figures/Figure_4_source_data.csv,src/figures/article_figures.py,analytical verification render
+Acute and recovery port uncertainty,files/statistical_inputs/khor_fakkan_port_daily.csv,src/analysis/port_sar_uncertainty.py,circular moving-block bootstrap
+Acute aggregate SAR robustness,files/analysis_ready/Supplementary_Data_5_acute_port_sar_robustness.csv,src/analysis/port_sar_uncertainty.py,aggregate validation; coordinate-level null not rerun
+Recovery NO2 uncertainty,files/statistical_inputs/no2_full_refit_daily_design.csv,src/analysis/no2_full_refit_bootstrap.py,full-refit circular moving-block bootstrap and leave-one-year-out diagnostics
+Supplementary Figure 1,files/supplementary_figures/Supplementary_Figure_1_source_data.csv,src/figures/article_figures.py,source-data validation
+Supplementary Figure 4,files/supplementary_figures/Supplementary_Figure_4_source_data.csv,src/figures/article_figures.py,source-data validation

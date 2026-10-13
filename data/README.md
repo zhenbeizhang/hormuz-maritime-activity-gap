@@ -1,48 +1,24 @@
-# Source data
+# Processed public inputs
 
-This directory contains the shareable tabular data used by the lightweight
+This directory contains the compact, non-pixel inputs used by the public
 reproduction workflow.
 
-## Contents
+- `files/statistical_inputs/khor_fakkan_port_daily.csv`: 740 daily values in
+  the fixed baseline, acute and recovery windows for 2022–2026.
+- `files/statistical_inputs/no2_full_refit_daily_design.csv`: 2,718 daily
+  records for the fixed 10, 20 and 30 km population-weighted NO2 domains,
+  including predictors, coverage and eligibility fields.
+- `files/analysis_ready/Supplementary_Data_5_acute_port_sar_robustness.csv`:
+  delayed aggregate port/SAR sensitivity, detector agreement and spatial
+  opportunity-baseline records; no vessel identity or exact coordinate.
+- `files/main_figures/`, `files/supplementary_figures/` and
+  `files/supplementary_tables/`: machine-readable display and table sources.
 
-- `files/main_figures/`: source tables used to redraw the current manuscript
-  Figure 1 and a separate lightweight focal diagnostic composite. The latter
-  verifies focal port–SAR–NO₂ values but is not the submitted manuscript
-  Figure 2; its legacy filename is retained only for workflow compatibility,
-  and current submission numbering is indexed under `../article_data/`.
-- `files/supplementary_figures/`: source tables for Supplementary Figures 1–7.
-- `files/supplementary_tables/`: Supplementary Tables 1–11.
-- `files/analysis_ready/`: five supplementary datasets plus compact supporting
-  timelines used to document the focal comparison and sensitivity analyses.
-- `FIELD_DICTIONARY.csv`: field-level names, types, units and missing-value
-  semantics.
-- `SOURCE_DATA_INVENTORY.csv`: row counts, column counts, file sizes and hashes.
-- `FIGURE_TABLE_CROSSWALK.csv`: mapping from displayed items to source files and
-  plotting code.
-- `FILE_MANIFEST.json` and `CHECKSUMS.sha256`: integrity records.
+`SOURCE_DATA_INVENTORY.csv`, `FILE_MANIFEST.json` and `CHECKSUMS.sha256`
+record dimensions and hashes. `FIGURE_TABLE_CROSSWALK.csv` maps key outputs to
+their sources and public code.
 
-## Interpretation boundaries
-
-- SAR vessel-like labels are a relative activity proxy, not verified vessel
-  totals or individual vessel identities.
-- PortWatch values are provider-defined calls or passages, not customs
-  throughput or an exhaustive physical census.
-- NO₂ values are population-weighted tropospheric-column anomalies, not surface
-  concentrations, personal exposure or health effects.
-- Empty fields mean missing or inapplicable under the source table's contract;
-  numeric zero remains an observed zero unless a named field states otherwise.
-  Supplementary Data 1 additionally uses the literal sentinel
-  `not_available` for quantities absent from the source analysis; the sentinel
-  never represents zero. Its unique row key is
-  `evidence_record_id` + `analysis_window` + `comparison_definition`.
-
-Raw satellite imagery, atmospheric pixel stacks, meteorological grids,
-population rasters and model weights are not included. See
-`../docs/THIRD_PARTY_DATA.md` for official access routes.
-
-`files/statistical_inputs/` contains the smallest non-pixel inputs used by the
-public statistical workflow: fixed daily PortWatch calls, eligible-date SAR
-activity densities, population-weighted daily NO₂ aggregates, fixed parameters
-and shared summaries used for independent equality checks. The NO₂ daily table
-contains coverage and eligibility flags so that one rule can be reapplied to
-all five years.
+These are transformed research inputs, not raw provider downloads. Raw
+satellite pixels, meteorological grids, population rasters, PortWatch source
+files and third-party model weights are excluded. See
+`../docs/THIRD_PARTY_DATA.md` and `../DATA_RIGHTS.md`.

@@ -54,7 +54,13 @@ different denominators and should not be combined into a single accuracy score.
 
 Files under `data/files/statistical_inputs/` contain daily or eligible-date
 aggregates rather than raw provider files or satellite pixels. Their composite
-keys are `date_utc + year + analysis_stage` for the port and SAR inputs and
-`analysis_id + buffer_km + utc_date` for the daily NO₂ input. The accompanying
-JSON files define fixed windows, domains, eligibility rules, estimators,
-resampling units and seeds.
+keys are `date_utc + year + analysis_stage` for the port input,
+`date_utc + year + analysis_stage + relative_orbit_number` where applicable
+for the eligible-date SAR table, and `analysis_id + buffer_km + utc_date` for
+the daily NO₂ design table. Fixed windows, estimators, resampling units and
+seeds are declared in the public analysis modules and tested directly.
+
+Current Supplementary Data 5 combines port uncertainty, sparse-acquisition SAR
+robustness, strict one-to-one detector comparison and the cluster-preserving
+spatial opportunity baseline. Its records are delayed and aggregate and contain
+no individual vessel identity or exact detector coordinate.

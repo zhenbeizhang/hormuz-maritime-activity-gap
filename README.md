@@ -1,112 +1,66 @@
 # Spatial observations of the 2026 Hormuz disruption
 
-This repository contains the source data and analysis code associated with the
-Article **“Spatial observations expose limits of monitoring the Hormuz
-disruption through port records.”** The study compares provider-recorded port
-calls with a Sentinel-1/xView3-derived vessel-activity proxy in fixed
-adjacent-water research geometries and with population-weighted TROPOMI
-tropospheric NO₂ column anomalies.
+This repository contains source data and analysis code for the Article
+**“Spatial observations expose limits of monitoring the Hormuz disruption
+through port records.”** The study compares provider-defined port calls,
+Sentinel-1/xView3-derived vessel-like activity in fixed adjacent-water research
+geometries, and population-weighted TROPOMI tropospheric NO2 column anomalies.
 
-The repository supports a bounded measurement result. It does not identify
-individual vessel movements, establish port substitution, estimate causal
-effects, attribute atmospheric anomalies to ships, or convert tropospheric NO₂
-columns into surface concentration, personal exposure or health outcomes.
+The evidence is aggregate and delayed. It does not disclose individual vessel
+identities or positions, infer port substitution, attribute atmospheric
+anomalies to ships, or convert tropospheric columns into surface concentrations,
+personal exposure or health effects.
 
-## Repository contents
+## Repository map
 
-- `article_data/`: publication-facing source tables for four main figures,
-  seven supplementary figures, eleven supplementary tables and five
-  Supplementary Data files, with a manifest and checksums.
-- `data/`: compact inputs used by the lightweight statistical and plotting
-  workflow to independently recompute the core port–SAR and May–June NO₂
-  contrasts.
-- `src/`: statistical analysis, plotting, validation and output utilities.
-- `assets/`: project-authored analytical geometry and regional land context
-  used by plotting and provenance records.
-- `tests/`: automated checks for source-data integrity and reproducible outputs.
-- `docs/`: data-source, field and redistribution documentation.
+- `article_data/`: publication-facing source data for the main and
+  supplementary displays, eleven supplementary tables and five Supplementary
+  Data files.
+- `data/`: compact processed inputs for the public statistical workflow.
+- `src/analysis/port_sar_uncertainty.py`: port moving-block bootstrap and
+  validation of delayed aggregate SAR robustness records.
+- `src/analysis/no2_full_refit_bootstrap.py`: full-refit moving-block bootstrap,
+  diagnostics and coverage checks for three fixed NO2 domains.
+- `src/figures/article_figures.py`: deterministic analytical verification
+  renders for the Figure 3 and Figure 4 source tables.
+- `tests/`: numerical, data-contract and repository-integrity tests.
 
-The Article-facing file inventory is described in
-[`article_data/README.md`](article_data/README.md). The exact statistical boundary is described in
-[`docs/STATISTICAL_REPRODUCIBILITY.md`](docs/STATISTICAL_REPRODUCIBILITY.md).
-
-The public plotting workflow generates analytical verification composites from
-the shared source tables. Current submission numbering and publication-facing
-source tables are indexed separately under `article_data/`; the workflow does
-not claim to recreate every final manuscript layout. The complete submitted
-Main Figure 2 and Supplementary Figure 2 include third-party optical/SAR pixel
-chips that are not redistributed, so their public records retain geometry,
-derived values, automatic method-comparison results and provenance rather than
-the display pixels.
-
-## Reproduce the figures and tables
-
-Create the declared environment and run the repository-level command:
+## Run
 
 ```bash
 conda env create -f environment.yml
 conda activate hormuz-maritime-reproduction
-python reproduce_all.py --data-root data --output-root reproduced_outputs
+python -m pytest -q
+python reproduce_all.py --data-root data --article-data article_data --output-root reproduced_outputs
 ```
 
-The command generates computational views used to verify the Article:
+The full workflow uses 5,000 bootstrap replicates for each prespecified block
+length. For a quick installation check, pass `--replicates 10`; that smoke run
+does not reproduce publication intervals.
 
-- two data-rich graphical composites and six supplementary figures in PDF,
-  SVG and PNG;
-- the five-year port–SAR point estimates and 5,000-replicate stratified
-  bootstrap;
-- the May–June population-weighted NO₂ absolute differences and 5,000-
-  replicate UTC-week cluster bootstrap for four fixed analytical domains;
-- 600-dpi PNG copies and a generated-output checksum inventory;
-- validated copies of eleven supplementary tables;
-- copied figure source data, checksums, a run log and a machine-readable output
-  manifest.
+The workflow reproduces the port estimates and intervals, validates aggregate
+SAR detector/opportunity records, refits the NO2 model within every bootstrap
+replicate, reports leave-one-year-out diagnostics, and creates verification
+plots from shared source tables. It does not download raw data or rerun
+satellite preprocessing and model inference.
 
-The output directory must be absent or empty. The workflow fails if a required
-file, checksum, table schema or declared source-data shape has changed.
+## Public evidence boundary
 
-The final journal layouts are assembled from the verified outputs and the
-publication-facing tables under `article_data/`; they are not version-controlled
-as display-ready figures before acceptance.
+The repository distributes delayed aggregate vessel-like activity, not
+coordinate-level detector outputs. Raw Sentinel imagery, TROPOMI pixels, ERA5
+grids, GHS-POP rasters, PortWatch provider downloads and third-party model
+weights are excluded. Access routes and reuse conditions are documented in
+[`docs/THIRD_PARTY_DATA.md`](docs/THIRD_PARTY_DATA.md) and
+[`DATA_RIGHTS.md`](DATA_RIGHTS.md).
 
-## Reproducibility boundary
+Main Figure 2 and Supplementary Figure 2 contain third-party image chips in the
+submitted manuscript. The repository provides their analytical geometry,
+display metadata, derived measurements and provenance, but not the pixels.
+Public figure outputs are analytical verification renders rather than
+pixel-identical journal layouts.
 
-This workflow recomputes the reported core contrasts from shared, non-pixel
-inputs and redraws figures from aggregate and scene-level tables. It does not
-download imagery, call Earth Engine, rerun xView3 inference, reconstruct
-population weights or repeat the upstream TROPOMI/ERA5 processing. The shared
-NO₂ daily input contains population-weighted aggregate values, coverage and
-eligibility fields, not raw pixels.
+## Citation and reuse
 
-The complete submitted Main Figure 2 and Supplementary Figure 2 are not
-rendered by the public package because their underlying optical and SAR pixel
-chips are not redistributed. Their source tables document geometry, derived
-automatic-validation values and imagery lineage, and the run manifest records
-the pixel-redistribution exception explicitly.
-
-## Data sources and interpretation
-
-The analysis uses IMF PortWatch, Copernicus Sentinel-1/2/5P, ERA5, GHS-POP,
-the public xView3 model family and a separately published YOLOv8n detector for
-an independent 12-scene cross-check. Raw provider files and third-party model
-weights are not redistributed. See [third-party data documentation](docs/THIRD_PARTY_DATA.md)
-and [data rights](DATA_RIGHTS.md) for access routes, attribution and reuse
-boundaries.
-
-Vessel-like labels are a relative remote-sensing activity proxy rather than a
-verified vessel census. PortWatch values are provider-defined calls or passages.
-NO₂ values are population-weighted tropospheric-column anomalies. These domains
-retain different units, denominators and sampling frequencies.
-
-## Citation
-
-Use the repository citation in `CITATION.cff`. For version-specific reuse, cite
-the full Git commit URL used for the analysis because the `main` branch may
-continue to change.
-
-## Licence and reuse
-
-Project-authored software code is available under the scoped MIT License in
-`LICENSE`. The licence does not cover data, manuscript figures, satellite
-imagery, model weights or provider-derived values. See `DATA_RIGHTS.md` for
-source-specific rights and reuse boundaries.
+Use `CITATION.cff` and cite the exact Git commit used for an analysis. The MIT
+licence applies only to project-authored software; it does not relicense data,
+imagery, model weights or provider-derived values.

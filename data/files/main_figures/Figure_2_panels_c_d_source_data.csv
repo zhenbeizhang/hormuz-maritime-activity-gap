@@ -1,0 +1,7 @@
+phase,detector,match_radius_m,xview3_count,comparator_count,matched_pair_count,xview3_matched_fraction,comparator_matched_fraction,symmetric_match_score,null_symmetric_score_median,null_symmetric_score_q2_5,null_symmetric_score_q97_5,null_replicates,interpretation_ceiling,panel
+baseline,cfar,150.0,252.0,681.0,238.0,0.944444444444,0.349486049927,0.510182207931,0.010718113612,0.0,0.0407824222937,10000.0,cross_detector_spatial_agreement_only,c_d
+baseline,independent_neural,200.0,252.0,50.0,50.0,0.198412698413,1.0,0.331125827815,0.0132450331126,0.0,0.0331125827815,10000.0,cross_detector_spatial_agreement_only,c_d
+acute,cfar,150.0,366.0,971.0,339.0,0.926229508197,0.3491246138,0.507105459985,0.0134629768138,0.00299177262528,0.053851907255,10000.0,cross_detector_spatial_agreement_only,c_d
+acute,independent_neural,200.0,366.0,24.0,23.0,0.0628415300546,0.958333333333,0.117948717949,0.00512820512821,0.0,0.0205128205128,10000.0,cross_detector_spatial_agreement_only,c_d
+recovery_stage,cfar,150.0,322.0,1015.0,302.0,0.937888198758,0.297536945813,0.451757666417,0.0104712041885,0.00149588631264,0.0434181002244,10000.0,cross_detector_spatial_agreement_only,c_d
+recovery_stage,independent_neural,200.0,322.0,39.0,39.0,0.121118012422,1.0,0.216066481994,0.01108033241,0.0,0.0277008310249,10000.0,cross_detector_spatial_agreement_only,c_d
